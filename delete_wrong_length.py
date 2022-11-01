@@ -1,5 +1,8 @@
-# Write a script that deletes all files with wrong_length in the filename from the current directory.
-# The script should take one argument, the directory to search, and print the names of the files it has deleted.
+'''
+@author: Andile Mbele
+program: delete_wrong_length.py
+time: Tue 01 Nov 2022
+'''
 
 import os
 import sys
