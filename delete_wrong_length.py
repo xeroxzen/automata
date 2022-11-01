@@ -10,8 +10,11 @@ import sys
 def delete_wrong_length(directory):
     for filename in os.listdir(directory):
         if 'wrong_length' in filename:
-            print(filename)
-            os.remove(filename)
+            try:
+                os.remove(os.path.join(directory, filename))
+                print(f"Deleted {filename}")
+            except Exception as e:
+                print(e)
 
 if __name__ == '__main__':
     delete_wrong_length(sys.argv[1])
