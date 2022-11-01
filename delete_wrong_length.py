@@ -1,12 +1,14 @@
 # Write a script that deletes all files with wrong_length in the filename from the current directory.
+# The script should take one argument, the directory to search, and print the names of the files it has deleted.
 
-import os, shutil
+import os
+import sys
 
-def delete_wrong_length():
-    for filename in os.listdir('.'):
+def delete_wrong_length(directory):
+    for filename in os.listdir(directory):
         if 'wrong_length' in filename:
-            shutil.move(filename, 'wrong_length_files')
-
+            print(filename)
+            os.remove(filename)
 
 if __name__ == '__main__':
-    delete_wrong_length()
+    delete_wrong_length(sys.argv[1])
