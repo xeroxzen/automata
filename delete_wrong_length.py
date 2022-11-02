@@ -18,7 +18,10 @@ def delete_wrong_length(directory):
     Deleted cabfoods.co.za - wp_posts_wrong_length_cleaned.txt
     Deleted cabfoods.co.za - wp_posts_wrong_length.txt
     Deleted cabfoods.co.za - wp_comments_wrong_length_cleaned.txt
-    No 
+    No files to delete
+
+    $ python delete_wrong_length.py /path/to/directory
+    No files to delete
     '''
     for filename in os.listdir(directory):
         if 'wrong_length' in filename:
