@@ -15,6 +15,8 @@ def delete_wrong_length(directory):
                 print(f"Deleted {filename}")
             except Exception as e:
                 print(e)
+    else:
+        print("No files to delete")
 
 if __name__ == '__main__':
     delete_wrong_length(sys.argv[1])
