@@ -22,13 +22,15 @@ def move_wrong_length(directory):
     Moved cabfoods.co.za - wp_comments_wrong_length_cleaned.txt to Wrong Length
     No files to move
     '''
+
+    if not os.path.exists(directory + '/Wrong Length'):
+        os.makedirs(directory + '/Wrong Length')
+
     for filename in os.listdir(directory):
         if 'wrong_length' in filename:
             try:
-                # Create the Wrong Length folder if it doesn't exist, in the same directory as the files
-                if not os.path.exists(directory + 'Wrong Length'):
-                    os.makedirs(directory + 'Wrong Length')
-                    os.rename(os.path.join(directory, filename), os.path.join('Wrong Length', filename))    
+                # move files to Wrong Length folder 
+                os.rename(directory + '/' + filename, directory + '/Wrong Length/' + filename)  
                 print(f"Moved {filename} to Wrong Length")
             except Exception as e:
                 print(e)
