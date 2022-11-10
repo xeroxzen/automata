@@ -31,3 +31,10 @@ def move_wrong_length(directory):
                 print(e)
     else:
         print("No files to move")
+
+def main():
+    move_wrong_length(sys.argv[1])
+
+
+if __name__ == '__main__':
+    main()
