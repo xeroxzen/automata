@@ -12,15 +12,6 @@ import sys
 def move_wrong_length(directory):
     '''
     $ python move_wrong_length.py /path/to/directory
-    Moved cabfoods.co.za - wp_followup_customers_wrong_length.txt to Wrong Length
-    Moved cabfoods.co.za - tbtlclients_wrong_length_cleaned.txt to Wrong Length
-    Moved cabfoods.co.za - tbtlcustomers_wrong_length.txt to Wrong Length
-    Moved cabfoods.co.za - wp_dusers_wrong_length_cleaned.txt to Wrong Length
-    Moved cabfoods.co.za - tbtlorders_wrong_length.txt to Wrong Length
-    Moved cabfoods.co.za - wp_posts_wrong_length_cleaned.txt to Wrong Length
-    Moved cabfoods.co.za - wp_posts_wrong_length.txt to Wrong Length
-    Moved cabfoods.co.za - wp_comments_wrong_length_cleaned.txt to Wrong Length
-    No files to move
     '''
 
     if not os.path.exists(directory + '/Wrong Length'):
