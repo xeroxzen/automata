@@ -5,8 +5,8 @@
 # Write a script that prints the headers/columns of a CSV file. The script should take the path to the CSV file as an argument.
 # Use Pandas
 
-import pandas as pd
 import sys
+import pandas as pd
 
 def get_table_columns(path):
     '''
