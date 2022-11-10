@@ -25,10 +25,10 @@ def move_wrong_length(directory):
     for filename in os.listdir(directory):
         if 'wrong_length' in filename:
             try:
-                if not os.path.exists('Wrong Length'):
-                    os.makedirs('Wrong Length')
-                    # move filename to Wrong Length
-                    os.path.join(filename, 'Wrong Length')
+                # Create the Wrong Length folder if it doesn't exist, in the same directory as the files
+                if not os.path.exists(directory + 'Wrong Length'):
+                    os.makedirs(directory + 'Wrong Length')
+                    os.rename(os.path.join(directory, filename), os.path.join('Wrong Length', filename))    
                 print(f"Moved {filename} to Wrong Length")
             except Exception as e:
                 print(e)
