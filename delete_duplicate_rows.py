@@ -1,5 +1,5 @@
 """
-Write a function that takes a csv file as a parameter, and deletes duplicates from the file.
+A method that takes a csv file as a parameter, and deletes duplicates from the file.
 The important duplicates are the ones that have the same name, the same email address, same user id etc.
 """
 
