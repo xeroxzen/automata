@@ -12,7 +12,7 @@ def delete_duplicate_rows(csv_file):
     $ python3 delete_duplicate_rows.py data.csv
     No duplicates found
     """
-    duplicates_to_look_for = ['name', 'email', 'phone_number', 'user_id', 'userid', 'phone']
+    duplicates_to_look_for = ['name', 'email', 'phone_number', 'phone']
 
     df = pd.read_csv(csv_file)
     try:
