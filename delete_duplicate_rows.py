@@ -7,12 +7,15 @@ import pandas as pd
 import sys
 
 def delete_duplicate_rows(csv_file):
+    """
+    $ python3 delete_duplicate_rows.py data.csv
+    No duplicates found
+    """
     duplicates_to_look_for = ['name', 'email', 'phone_number', 'user_id', 'userid']
     df = pd.read_csv(csv_file)
     try:
         for column in duplicates_to_look_for:
             if column in df.columns:
-                
                 df.drop_duplicates(subset=column, keep='first', inplace=True)
         df.to_csv('new_' + csv_file, index=False)
     except KeyError:
