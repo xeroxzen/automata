@@ -13,13 +13,15 @@ def delete_duplicate_rows(csv_file):
     No duplicates found
     """
     duplicates_to_look_for = ['name', 'email', 'phone_number', 'user_id', 'userid', 'phone']
-    df = pd.read_csv(csv_file)
+    # user_id in duplicates_to_look_for list is an integer, therefore save it as an integer not a float
+
+    df = pd.read_csv(csv_file, dtype={duplicates_to_look_for[3:4]: int})
     try:
         for column in duplicates_to_look_for:
             if column in df.columns:
                 df.drop_duplicates(subset=column, keep='first', inplace=True)
         # save the csv file in the same directory as the csv file, append _removed_duplicates to the filename
-        df.to_csv(os.path.dirname(csv_file) + '/' + os.path.basename(csv_file).split('.')[0] + '_removed_duplicates.csv', index=False)
+        df.to_csv(os.path.dirname(csv_file) + '/' + os.path.basename(csv_file).split('.')[-1] + '_removed_duplicates.csv', index=False)
     except KeyError:
         pass
     except Exception as e:
