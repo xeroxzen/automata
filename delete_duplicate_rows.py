@@ -17,7 +17,8 @@ def delete_duplicate_rows(csv_file):
         for column in duplicates_to_look_for:
             if column in df.columns:
                 df.drop_duplicates(subset=column, keep='first', inplace=True)
-        df.to_csv('removed_duplicates' + csv_file, index=False)
+        # save the csv file in the same directory, append _removed_duplicates to the filename
+        df.to_csv(f"{csv_file.split('.')[0]}_removed_duplicates.csv", index=False)
     except KeyError:
         pass
     except Exception as e:
