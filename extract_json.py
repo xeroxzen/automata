@@ -9,7 +9,7 @@ import sys
 
 def json_extractor(json_file):
   # Load the JSON file into a Pandas DataFrame
-  df = pd.read_json(json_file)
+  df = pd.read_json(json_file, lines=True)
 
   # Select the columns that contain useful data
   useful_data = df[['name', 'address', 'phone', 'email', 'firstname', 'lastname', 'first_name', 'last_name', 'country', 'city', 'street', 'latitude', 'longitude', 'created_date']]
