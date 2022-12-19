@@ -23,12 +23,13 @@ def json_extractor(json_file):
   else:
     try:
         useful_data.to_csv('useful_data.csv')
+        print(useful_data) # Print the useful data to the user
         print("Data saved to useful_data.csv")
     except Exception as e:
         print(e)
 
   # Print the useful data to the console
-  print(useful_data)
+#   print(useful_data)
 
 def main():
   json_extractor(sys.argv[1])
