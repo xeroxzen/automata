@@ -22,7 +22,7 @@ def json_extractor(json_file):
     print("No useful data in this JSON file")
   else:
     try:
-        useful_data.to_csv('useful_data.csv')
+        # useful_data.to_csv('useful_data.csv')
         print(useful_data) # Print the useful data to the user
         print("Data saved to useful_data.csv")
     except Exception as e:
