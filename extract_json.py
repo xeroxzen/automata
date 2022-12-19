@@ -4,14 +4,22 @@
 '''
 
 import pandas as pd
+import json
+import sys
 
-def extract_json():
-    # Load the JSON file into a Pandas DataFrame
-    df = pd.read_json('data.json')
+def json_extractor(json_file):
+  # Load the JSON file into a Pandas DataFrame
+  df = pd.read_json(json_file)
 
-    # Select only the columns that contain personal identifiable information
-    useful_columns = ['name', 'address', 'email', 'phone', 'country', 'city', 'street', 'latitude', 'longitude']
-    df = df[useful_columns]
+  # Select the columns that contain useful data
+  useful_data = df[['name', 'address', 'phone', 'email', 'firstname', 'lastname', 'first_name', 'last_name', 'country', 'city', 'street', 'latitude', 'longitude', 'created_date']]
 
-    # Print the extracted data to the console
-    print(df)
+  # Print the useful data to the console
+  print(useful_data)
+
+def main():
+  json_extractor(sys.argv[1])
+
+if __name__ == '__main__':
+  main()
+
