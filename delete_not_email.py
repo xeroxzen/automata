@@ -3,7 +3,6 @@
 """
 @author: Andile Mbele
 
-
 1. Write a python script that takes a CSV file as input, look through the email column and delete the rows that do not have data that looks like an email address. The script should output a new CSV file with the rows that have valid email addresses. Use regular expressions to validate the email addresses.
 2. Use Pandas
 """
