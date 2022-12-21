@@ -10,7 +10,7 @@ def change_separator(path):
     '''
 
     # read the file
-    with open(path, 'r') as f:
+    with open(path, 'r', encoding='latin-1') as f:
         lines = f.readlines()
 
     # check the separator
@@ -30,7 +30,7 @@ def change_separator(path):
         new_lines.append(line.replace(separator, ','))
 
     # save the file where the original file was
-    with open(path.replace('.txt', '.csv'), 'w') as f:
+    with open(path.replace('.txt', '.csv'), 'w', encoding="utf-8") as f:
         f.writelines(new_lines)
 
 def main():
