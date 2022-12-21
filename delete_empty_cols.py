@@ -6,7 +6,7 @@ def delete_empty_cols(path):
     # Use pandas to load the file and delete the empty columns.
 
     # dataframe
-    df = pd.read_csv(path, sep='|', encoding='latin-1', error_bad_lines=False)
+    df = pd.read_csv(path, sep='|', encoding='latin-1', error_bad_lines=False, low_memory=False)
 
     # delete empty columns
     df = df.dropna(axis=1, how='all')
