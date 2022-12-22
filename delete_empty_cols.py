@@ -18,4 +18,4 @@ def main():
     delete_empty_cols(sys.argv[1])
 
 if __name__ == '__main__':
-    main()
+    main()            
