@@ -7,7 +7,7 @@ def json_insert_comma_and_bracket(path):
     '''
 
     # read the file
-    with open(path, 'r', encoding='latin-1') as f:
+    with open(path, 'r', encoding='utf-8') as f:
         lines = f.readlines()
 
     # add a comma after the end of each JSON entry if a comma does not already exist
