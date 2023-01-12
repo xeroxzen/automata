@@ -1,5 +1,3 @@
-
-
 """
 @author: Andile Mbele
 
@@ -11,6 +9,7 @@ import pandas as pd
 import re
 import sys
 
+
 def delete_not_email(file):
     df = pd.read_csv(file)
     df = df[df['email'].str.contains(r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$')]
@@ -18,9 +17,10 @@ def delete_not_email(file):
     df.to_csv(file + '_after_regex.csv')
     # df.to_csv(file.split('.')[0] + '_after_regex.csv', index=False)
 
+
 def main():
     delete_not_email(sys.argv[1])
 
-if __name__ == '__main__':
-    main()   
 
+if __name__ == '__main__':
+    main()

@@ -20,7 +20,7 @@ def remove_extra_quotes():
     df[json_column] = df[json_column].replace('"', '')
 
     # Print the first 5 rows of the dataframe
-    print(df)
+    print(df.head())
 
     # Write the cleaned up dataframe as it is printed in df.head() without the extra quotes to a csv file and save it in the same directory as the original csv file
     df.to_csv(os.path.join(os.path.dirname(sys.argv[1]), 'cleaned_' + os.path.basename(sys.argv[1])), index=False)
