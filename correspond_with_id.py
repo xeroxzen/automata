@@ -1,4 +1,7 @@
-# python script that parses a csv file, save the new file with entries corresponding to a specific id in a new csv file
+'''
+@author: Andile Jaden Mbele
+@date: 12 January 2023
+'''
 
 import pandas as pd
 import os
@@ -16,7 +19,6 @@ def correspond_with_id():
     
     # Drop the duplicates in the new dataframe
     df = df.drop_duplicates(subset='id', keep='first')
-
 
     # Print the first 5 rows of the new dataframe
     print(df.head())
