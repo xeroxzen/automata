@@ -28,11 +28,11 @@ def count_lines_of_code(directory):
         except:
             print('Unexpected error.')
 
-    print('Number of lines of code: {}'.format(count))
+    print(f'Number of lines of code: {count}')
 
 def main():
     directory = sys.argv[1:]
-    print('Number of lines of code: {}'.format(count_lines_of_code(directory)))
+    print(f'Number of lines of code: {count_lines_of_code(directory)}')
 
 if __name__ == '__main__':
     main()
