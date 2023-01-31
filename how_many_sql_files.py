@@ -1,12 +1,15 @@
 '''
-A simple Python script to count the number of SQL files in a directory and subdirectories.
+@Author: Google Jr
+@program: How many SQL files?
 '''
 
 import os
 import sys
 
 def count_sql_files(directory):
-    # Count the number of SQL files in the computer.
+    '''
+    A simple Python script to count the number of SQL files in a directory and subdirectories.
+    '''
     count = 0
     for dire in directory:
         try:

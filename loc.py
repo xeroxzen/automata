@@ -1,5 +1,7 @@
-# Write a script that counts the lines of code in file in a directory and subdirectories.
-
+'''
+@author: Andile Jaden Mbele
+program: loc.py
+'''
 import os
 import sys
 
@@ -16,6 +18,7 @@ def count_lines_of_code(directory):
                             for line in f:
                                 count += 1
             return count
+        
         except FileNotFoundError:
             print('Directory not found.')
         except PermissionError:
@@ -28,9 +31,6 @@ def count_lines_of_code(directory):
     print('Number of lines of code: {}'.format(count))
 
 def main():
-    '''
-    Main function.
-    '''
     directory = sys.argv[1:]
     print('Number of lines of code: {}'.format(count_lines_of_code(directory)))
 

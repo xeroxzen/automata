@@ -1,10 +1,13 @@
-# Count the number of CSV files in a directory and subdirectories.
+'''
+@author: Google Jr
+@program: How many CSV files?
+'''
 
 import os
 import sys
 
 def count_csv_files(directory):
-    # Count the number of CSV files in the computer.
+    # Count the number of CSV files in a directory and subdirectories.
     count = 0
     for dire in directory:
         try:
@@ -26,9 +29,6 @@ def count_csv_files(directory):
     print('Number of CSV files: {}'.format(count))
 
 def main():
-    '''
-    Main function.
-    '''
     directory = sys.argv[1:]
     print(count_csv_files(directory))
 
