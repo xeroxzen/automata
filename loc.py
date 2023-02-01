@@ -1,6 +1,6 @@
 '''
-@author: Andile Jaden Mbele
-program: loc.py
+@author: Google Jr
+program: How many lines of code?
 '''
 import os
 import sys
@@ -13,7 +13,7 @@ def count_lines_of_code(directory):
             os.chdir(dire)
             for root, dirs, files in os.walk(dire):
                 for file in files:
-                    if file.endswith('.py'):
+                    if file.endswith('.py') or file.endswith('.js') or file.endswith('.java') or file.endswith('.css'):
                         with open(file) as f:
                             for line in f:
                                 count += 1
@@ -27,8 +27,6 @@ def count_lines_of_code(directory):
             print('OS error.')
         except:
             print('Unexpected error.')
-
-    print(f'Number of lines of code: {count}')
 
 def main():
     directory = sys.argv[1:]
