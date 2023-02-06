@@ -14,9 +14,6 @@ def count_lines_of_code(directory):
             for root, dirs, files in os.walk(dire):
                 for file in files:
                     if file.endswith('.py'):
-                        print(file) # For debugging purposes.   
-                        # Navigate to the directory where the file is located.
-                        os.chdir(root)
                         with open(file, 'r', encoding='utf-8') as f:
                             for line in f:
                                 if line.strip() and not line.startswith(('#', '"""', "'''", 'r"""')):
