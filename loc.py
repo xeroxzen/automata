@@ -13,14 +13,13 @@ def count_lines_of_code(directory):
             os.chdir(dire)
             for root, dirs, files in os.walk(dire):
                 for file in files:
-                    if file.endswith('.py') or file.endswith('.js') or file.endswith('.java') or file.endswith('.css'):
+                    if file.endswith('.py'):
                         with open(file) as f:
                             for line in f:
                                 count += 1
             return count
-        
         except FileNotFoundError:
-            print('Directory not found.')
+            print('Directory not found.')   
         except PermissionError:
             print('Permission denied.')
         except OSError:
