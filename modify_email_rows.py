@@ -9,8 +9,8 @@ import re
 import sys
 
 def modify_email_rows(filename):
-    pattern = u'[\u041a1c\dfe]'
-    df = pd.read_csv(filename)
+    pattern = u'[\u041e]'
+    df = pd.read_csv(filename, error_bad_lines=False, encoding='utf-8', sep=',', header=0, index_col=False, dtype=str, na_filter=False, keep_default_na=False, low_memory=False)
     df['to_email'] = df['to_email'].apply(lambda x: re.sub(pattern, '', x))
     
     # df['to_email'] = df['to_email'].apply(lambda x: re.sub(r'[\[\]\"\']', '', x))
@@ -19,7 +19,7 @@ def modify_email_rows(filename):
     df.to_csv(filename[:-4] + '_modified.csv', index=False)
 
     # print the modified dataframe
-    print(df)
+    print(df.head())
 
 
 def main():
