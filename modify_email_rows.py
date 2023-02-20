@@ -12,6 +12,8 @@ def modify_email_rows(filename):
     df = pd.read_csv(filename, on_bad_lines='skip', encoding='utf-8', sep=',', header=0, index_col=False, dtype=str, na_filter=False, keep_default_na=False, low_memory=False)
 
     df['to_email'] = df['to_email'].apply(lambda x: re.sub('(.*<|>])', '', x))
+    # remove extra quotes and square brackets from the email addresses  
+    df['cc_email'] = df['cc_email'].apply(lambda x: re.sub('(.*<|>])', '', x))
 
     # save the modified dataframe to a new csv file
     df.to_csv(filename[:-4] + '_modified.csv', index=False)
