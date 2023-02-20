@@ -1,5 +1,5 @@
 '''
-The Problem: I have a CSV file with multiple columns that may contain email addresses and some jibberish. These column is 'from_email'.
+The Problem: I have a CSV file with multiple columns that may contain email addresses and some jibberish which we don't need.
 
 The Solution: Clear anything that is not an email address from the 'from_email' column. Also, remove all extra quotes and square brackets from the email addresses.
 '''
@@ -18,7 +18,6 @@ def modify_email_rows(filename):
 
     # print the modified dataframe
     print(df.head())
-
 
 def main():
     modify_email_rows(sys.argv[1])
