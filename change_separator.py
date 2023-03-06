@@ -8,7 +8,7 @@ def change_separator(path):
     2. The script should check if the file uses a pipe, semicolon or tab as a separator.
     3. Change the separator to a comma and save the file as a csv file.
     '''
-
+    
     # read the file
     with open(path, 'r', encoding='latin-1') as f:
         lines = f.readlines()
@@ -37,8 +37,4 @@ def main():
     change_separator(sys.argv[1])
 
 if __name__ == '__main__':
-    main()
-
-
-
-    
+    main()    
