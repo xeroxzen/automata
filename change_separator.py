@@ -16,10 +16,14 @@ def change_separator(path):
     # check the separator
     if '|' in lines[0]:
         separator = '|'
+    elif '-' in lines[0]:
+        separator = '-'
     elif ';' in lines[0]:
         separator = ';'
     elif '\t' in lines[0]:
         separator = '\t'
+    elif " " in lines[0]:
+        separator = " "
     else:
         print('Unknown separator')
         return
