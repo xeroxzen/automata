@@ -7,6 +7,7 @@ import pandas as pd
 import sys
 import os
 
+
 def delete_duplicate_rows(csv_file):
     """
     $ python3 delete_duplicate_rows.py data.csv
@@ -19,15 +20,18 @@ def delete_duplicate_rows(csv_file):
         for column in duplicates_to_look_for:
             if column in df.columns:
                 df.drop_duplicates(subset=column, keep='first', inplace=True)
-        df.to_csv(os.path.dirname(csv_file) + '/' + os.path.basename(csv_file).split('.csv')[0] + '_removed_duplicates.csv', index=False)
+        df.to_csv(os.path.dirname(csv_file) + '/' + os.path.basename(csv_file).split('.csv')[0] +
+                  '_removed_duplicates.csv', index=False)
     except KeyError:
         pass
     except Exception as e:
         print(e)    
 
+
 def main():
     csv_file = sys.argv[1]
     delete_duplicate_rows(csv_file)
+
 
 if __name__ == '__main__':  
     main()
