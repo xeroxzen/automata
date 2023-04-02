@@ -1,15 +1,16 @@
-'''
+"""
 @Author: Google Jr
 @program: How many Text files?
-'''
+"""
 
 import os
 import sys
 
+
 def count_txt_files(directory):
-    '''
+    """
     A simple Python script to count the number of Text files in a directory and subdirectories.
-    '''
+    """
     count = 0
     for dire in directory:
         try:
@@ -29,13 +30,15 @@ def count_txt_files(directory):
             print('Unexpected error.')
 
     print('Number of Text files: {}'.format(count))
-        
+
+
 def main():
-    '''
+    """
     Main function.
-    '''
+    """
     directory = sys.argv[1:]
     print(count_txt_files(directory))
+
 
 if __name__ == '__main__':
     main()

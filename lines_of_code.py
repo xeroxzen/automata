@@ -1,10 +1,11 @@
-'''
+"""
 @author: Google Jr
 program: How many lines of code?
-'''
+"""
 
 import os
 import sys
+
 
 def count_lines_of_code(directory):
     count = 0
@@ -23,9 +24,11 @@ def count_lines_of_code(directory):
         except Exception as e:
             print(f'Error: {e}')
 
+
 def main():
     directory = sys.argv[1:]
     print(f'\nNumber of lines of code: {count_lines_of_code(directory)}')
+
 
 if __name__ == '__main__':
     main()

@@ -1,10 +1,11 @@
-'''
+"""
 @author: Google Jr
 @program: How many CSV files?
-'''
+"""
 
 import os
 import sys
+
 
 def count_csv_files(directory):
     # Count the number of CSV files in a directory and subdirectories.
@@ -28,9 +29,11 @@ def count_csv_files(directory):
 
     print('Number of CSV files: {}'.format(count))
 
+
 def main():
     directory = sys.argv[1:]
     print(count_csv_files(directory))
+
 
 if __name__ == '__main__':
     main()

@@ -2,9 +2,10 @@ import os
 import sys
 import shutil
 
+
 def categorise(path):
     # get the list of files in the directory
-    files = os.listdir(path)    
+    files = os.listdir(path)
     # loop through the files
     for file in files:
         # get the file extension
@@ -15,8 +16,10 @@ def categorise(path):
         # move the file to the subdirectory
         shutil.move(path + '/' + file, path + '/' + file_extension + '_files')
 
+
 def main():
     categorise(sys.argv[1])
+
 
 if __name__ == '__main__':
     main()

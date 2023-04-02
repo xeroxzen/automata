@@ -1,11 +1,12 @@
-'''
+"""
 @author: Andile Jaden Mbele
 @date: 12 January 2023
-'''
+"""
 
 import pandas as pd
 import os
 import sys
+
 
 def correspond_with_id():
     """
@@ -16,7 +17,7 @@ def correspond_with_id():
 
     # For each unique id in the original dataframe, save the email and username in the new dataframe
     df = df.groupby('id').agg({'email': 'first', 'username': 'first'}).reset_index()
-    
+
     # Drop the duplicates in the new dataframe
     df = df.drop_duplicates(subset='id', keep='first')
 
@@ -32,8 +33,10 @@ def correspond_with_id():
     # Save the new dataframe as a csv file in the same directory as the original csv file
     df.to_csv(os.path.join(os.path.dirname(sys.argv[1]), 'corresponding_' + os.path.basename(sys.argv[1])), index=False)
 
+
 def main():
     correspond_with_id()
+
 
 if __name__ == '__main__':
     main()

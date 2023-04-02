@@ -1,11 +1,12 @@
-'''
-The Problem: I have a CSV file with multiple columns that may contain email addresses and some jibberish which we don't need.
+"""The Problem: I have a CSV file with multiple columns that may contain email addresses and some gibberish which we
+don't need.
 
-The Solution: Clear anything that is not an email address from the 'from_email' column. Also, remove all extra quotes and square brackets from the email addresses.
-'''
+The Solution: Clear anything that is not an email address from the 'from_email' column. Also, remove all extra quotes
+and square brackets from the email addresses."""
 
 import pandas as pd
 import sys
+
 
 def modify_email_rows(filename):
     with open(filename, 'r', encoding='utf-8') as f:
@@ -22,6 +23,7 @@ def modify_email_rows(filename):
 
 def main():
     modify_email_rows(sys.argv[1])
+
 
 if __name__ == '__main__':
     main()

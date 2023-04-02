@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="d87bae8c-8d14-42a8-99b4-28dc93fd0c0a" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/csv-editor.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/categorise.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/delete_wrong_length.py" beforeDir="false" afterPath="$PROJECT_DIR$/delete_wrong_length.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_to_multicolumns.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_to_multicolumns.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dtermine_output.py" beforeDir="false" afterPath="$PROJECT_DIR$/dtermine_output.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/edit_phone_num.py" beforeDir="false" afterPath="$PROJECT_DIR$/edit_phone_num.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/extract_json.py" beforeDir="false" afterPath="$PROJECT_DIR$/extract_json.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/get_table_columns.py" beforeDir="false" afterPath="$PROJECT_DIR$/get_table_columns.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/how_many_csv_files.py" beforeDir="false" afterPath="$PROJECT_DIR$/how_many_csv_files.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/how_many_excel_files.py" beforeDir="false" afterPath="$PROJECT_DIR$/how_many_excel_files.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/how_many_json_files.py" beforeDir="false" afterPath="$PROJECT_DIR$/how_many_json_files.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/how_many_sql_files.py" beforeDir="false" afterPath="$PROJECT_DIR$/how_many_sql_files.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/how_many_txt_files.py" beforeDir="false" afterPath="$PROJECT_DIR$/how_many_txt_files.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/json_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/json_data.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lines_of_code.py" beforeDir="false" afterPath="$PROJECT_DIR$/lines_of_code.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/load_json.py" beforeDir="false" afterPath="$PROJECT_DIR$/load_json.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/matching_columns.py" beforeDir="false" afterPath="$PROJECT_DIR$/matching_columns.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modify_email_rows.py" beforeDir="false" afterPath="$PROJECT_DIR$/modify_email_rows.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modify_non_url.py" beforeDir="false" afterPath="$PROJECT_DIR$/modify_non_url.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/move_wrong_length.py" beforeDir="false" afterPath="$PROJECT_DIR$/move_wrong_length.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/organize.py" beforeDir="false" afterPath="$PROJECT_DIR$/organize.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2NsIzmJRmF5vj4zC1c2CPUomiS5" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d87bae8c-8d14-42a8-99b4-28dc93fd0c0a" name="Changes" comment="" />
+      <created>1680446629244</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1680446629244</updated>
+      <workItem from="1680446633316" duration="1107000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
