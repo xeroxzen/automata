@@ -16,9 +16,9 @@ def modify_url(filename):
         df = pd.read_csv(filename, encoding='utf-8', sep=',', header=0, index_col=False, dtype=str, na_filter=False,
                          keep_default_na=False, low_memory=False)
 
-        # check for columns with url addresses. URLs may not necessarily start with http or https. 
-        df.loc[~df['website'].str.contains(r'^(https?://)?(www\.)?([a-zA-Z0-9]+\.)+[a-zA-Z]{2,}(/[^\s]*)?$',
-                                           regex=True), 'website'] = ''
+        # check for columns with url addresses. URLs may not necessarily start with http or https.
+        df.loc[~df['personal_www'].str.contains(r'^(https?://)?(www\.)?([a-zA-Z0-9]+\.)+[a-zA-Z]{2,}(/[^\s]*)?$',
+                                                regex=True), 'personal_www'] = ''
 
         print(df.head())
 
