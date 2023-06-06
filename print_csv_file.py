@@ -16,11 +16,11 @@ def print_csv_contents(directory):
                 print(f"Printing contents of {file_path}:")
 
                 # Read and print the contents of the CSV file
-                with open(file_path, 'r') as csv_file:
+                with open(file_path, 'r', encoding='utf-8') as csv_file:
                     reader = csv.reader(csv_file)
                     for row in reader:
                         print(row)
-                        time.sleep(2)  # Delay for 2 seconds between each line
+                        time.sleep(1)
 
                 print()  # Print an empty line between files
 
