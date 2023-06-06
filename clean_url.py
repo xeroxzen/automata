@@ -26,10 +26,10 @@ def clean_url(filename):
         url_regex = r'(https?://[^\s<>"]+|www\.[^\s<>"]+)'
 
         # Use the str.extract method to extract the valid parts of the URLs
-        df['clean_signature'] = df['signature'].str.extract(url_regex, expand=False)
+        df['detail'] = df['detail'].str.extract(url_regex, expand=False) 
 
         # Print the cleaned URLs
-        print(df['clean_signature'])
+        print(df['detail'])
 
         # save to csv
         df.to_csv(filename[:-4] + '_modified.csv', index=False)

@@ -17,8 +17,8 @@ def modify_url(filename):
                          keep_default_na=False, low_memory=False)
 
         # check for columns with url addresses. URLs may not necessarily start with http or https.
-        df.loc[~df['personal_www'].str.contains(r'^(https?://)?(www\.)?([a-zA-Z0-9]+\.)+[a-zA-Z]{2,}(/[^\s]*)?$',
-                                                regex=True), 'personal_www'] = ''
+        df.loc[~df['sig'].str.contains(r'^(https?://)?(www\.)?([a-zA-Z0-9]+\.)+[a-zA-Z]{2,}(/[^\s]*)?$',
+                                       regex=True), 'sig'] = ''
 
         print(df.head())
 

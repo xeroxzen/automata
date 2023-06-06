@@ -15,7 +15,7 @@ def count_lines_in_csv_files(directory):
                 file_path = os.path.join(root, file)
                 line_count = 0
 
-                with open(file_path, 'r') as csv_file:
+                with open(file_path, 'r', encoding="utf-8") as csv_file:
                     reader = csv.reader(csv_file)
                     line_count = sum(1 for _ in reader)
 
