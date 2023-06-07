@@ -5,6 +5,7 @@
 
 import os
 import subprocess
+import sys
 
 
 def parse_sql_files(directory):
@@ -16,12 +17,16 @@ def parse_sql_files(directory):
 
                 # Call your SQL parser script here with the SQL file path and CSV file path
                 # Replace 'your_parser_script.py' with the actual filename of your SQL parser script
-                subprocess.call(['python', '~/Desktop/prescient/code/credscripts/SqlParserPlus.py', sql_file_path,
-                                 csv_file_path])
+                subprocess.call(['python', 'your_parser_script.py', sql_file_path, csv_file_path])
 
     print("SQL files parsed to CSV successfully.")
 
 
 if __name__ == '__main__':
-    directory_path = '/path/to/nested_directories'  # Replace with the directory containing nested folders with SQL files
+    if len(sys.argv) < 2:
+        print("Please provide the directory path as a command-line argument.")
+        sys.exit(1)
+
+    directory_path = sys.argv[1]  # Directory path passed as command-line argument
     parse_sql_files(directory_path)
+
