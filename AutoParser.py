@@ -17,7 +17,8 @@ def parse_sql_files(directory):
 
                 # Call your SQL parser script here with the SQL file path and CSV file path
                 # Replace 'your_parser_script.py' with the actual filename of your SQL parser script
-                subprocess.call(['python', 'your_parser_script.py', sql_file_path, csv_file_path])
+                subprocess.call(['python', '~/Desktop/prescient/credscripts/SqlParserPlus.py', sql_file_path,
+                                 csv_file_path])
 
     print("SQL files parsed to CSV successfully.")
 
