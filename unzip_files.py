@@ -7,7 +7,10 @@
 import os
 import sys
 import zipfile
+import tarfile
 import gzip
+import rarfile
+import shutil
 
 
 def unzip_files(directory):
@@ -39,6 +42,35 @@ def unzip_files(directory):
                     print(f"Error message: {str(e)}")
                     print()
 
+            elif file.endswith('.tar'):
+                try:
+                    with tarfile.open(file_path, 'r') as tar_ref:
+                        tar_ref.extractall(root)
+                        total_unzipped += len(tar_ref.getnames())
+                except Exception as e:
+                    print(f"Error unzipping file: {file_path}")
+                    print(f"Error message: {str(e)}")
+                    print()
+
+            elif file.endswith('.rar'):
+                try:
+                    with rarfile.RarFile(file_path, 'r') as rar_ref:
+                        rar_ref.extractall(root)
+                        total_unzipped += len(rar_ref.namelist())
+                except Exception as e:
+                    print(f"Error unzipping file: {file_path}")
+                    print(f"Error message: {str(e)}")
+                    print()
+
+            elif file.endswith('.7z'):
+                try:
+                    shutil.unpack_archive(file_path, root)
+                    total_unzipped += 1
+                except Exception as e:
+                    print(f"Error unzipping file: {file_path}")
+                    print(f"Error message: {str(e)}")
+                    print()
+
     print(f"Total files unzipped: {total_unzipped}")
 
 
@@ -49,4 +81,5 @@ if __name__ == '__main__':
 
     directory = sys.argv[1]
     unzip_files(directory)
+
 
