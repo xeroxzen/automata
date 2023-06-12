@@ -13,7 +13,7 @@ def print_csv_contents(directory):
         for file in files:
             if file.endswith('.csv'):
                 file_path = os.path.join(root, file)
-                print(f"Printing contents of {file_path}:")
+                print(f"Analyzing contents of {file_path}:")
 
                 # Read and print the contents of the CSV file
                 with open(file_path, 'r', encoding='utf-8') as csv_file:
