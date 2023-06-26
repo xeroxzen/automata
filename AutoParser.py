@@ -19,7 +19,7 @@ def parse_sql_files(directory):
                     # Call your SQL parser script here with the appropriate flag and file paths
                     # Replace 'your_parser_script.py' with the actual filename of your SQL parser script
                     subprocess.call(['python',
-                                     'C:\\Users\\andile.mbele\\Desktop\\prescient\\credscripts\\SqlParserPlus.py',
+                                     'C:\\Users\\andile.mbele\\Desktop\\prescient\\code\\credscripts\\SqlParserPlus.py',
                                      '-s',
                                      sql_file_path, csv_file_path])
 
