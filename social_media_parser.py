@@ -43,28 +43,44 @@ def extract_user_alias(url, domain):
             return social_media_dict[domain] + url.split('/')[-1]
     return ''
 
-def extract_social_media_id(row):
+
+def extract_social_media_ids(row):
     url = row['personal_www']
 
     if pd.notna(url) and url.strip():
         url_parts = url.split('/')
 
         domain = url_parts[2] if len(url_parts) >= 3 else None
+        social_media_id = extract_user_alias(url, domain)
 
-        return extract_user_alias(url, domain)
+        if domain in social_media_dict:
+            return social_media_id
+        else:
+            return ''
 
     return ''
 
 
 def main(csv_file):
-    df = pd.read_csv(csv_file)
+    df = pd.read_csv(csv_file, encoding='utf-8')
 
-    df['social_media_id'] = df.apply(extract_social_media_id, axis=1)
+    # Create new columns for each social media domain
+    for domain_key in social_media_dict.values():
+        df[domain_key] = ''
+
+    # Populate the new columns with social media IDs
+    for _, row in df.iterrows():
+        social_media_id = extract_social_media_ids(row)
+        domain = social_media_id[:-1] if social_media_id else None
+
+        if domain in social_media_dict.values():
+            df.at[_, domain] = social_media_id
 
     new_csv_file = csv_file.replace('.csv', '_with_social_media_ids.csv')
     df.to_csv(new_csv_file, index=False)
 
-    print(f"Social media IDs have been added and the new CSV file has been saved at: {new_csv_file}")
+    print(
+        f"Social media IDs have been added, and the new CSV file has been saved at: {new_csv_file}")
 
 
 if __name__ == '__main__':
