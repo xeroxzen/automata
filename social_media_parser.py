@@ -53,10 +53,7 @@ def extract_social_media_ids(row):
         domain = url_parts[2] if len(url_parts) >= 3 else None
         social_media_id = extract_user_alias(url, domain)
 
-        if domain in social_media_dict:
-            return social_media_id
-        else:
-            return ''
+        return social_media_id if domain in social_media_dict else ''
 
     return ''
 
@@ -64,9 +61,11 @@ def extract_social_media_ids(row):
 def main(csv_file):
     df = pd.read_csv(csv_file, encoding='utf-8')
 
-    # Create new columns for each social media domain
+    # Create new columns for each social media domain if there's at least one corresponding row
     for domain_key in social_media_dict.values():
-        df[domain_key] = ''
+        domain_rows = df['personal_www'].str.contains(domain_key)
+        if domain_rows.any():
+            df[domain_key] = ''
 
     # Populate the new columns with social media IDs
     for _, row in df.iterrows():
