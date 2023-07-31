@@ -61,19 +61,17 @@ def extract_social_media_ids(row):
 def main(csv_file):
     df = pd.read_csv(csv_file, encoding='utf-8')
 
-    # Create new columns for each social media domain if there's at least one corresponding row
     for domain_key in social_media_dict.values():
         domain_rows = df['personal_www'].str.contains(domain_key)
         if domain_rows.any():
             df[domain_key] = ''
 
-    # Populate the new columns with social media IDs
-    for _, row in df.iterrows():
+    for idx, row in df.iterrows():
         social_media_id = extract_social_media_ids(row)
         domain = social_media_id[:-1] if social_media_id else None
 
         if domain in social_media_dict.values():
-            df.at[_, domain] = social_media_id
+            df.at[idx, domain] = social_media_id
 
     new_csv_file = csv_file.replace('.csv', '_with_social_media_ids.csv')
     df.to_csv(new_csv_file, index=False)
