@@ -52,15 +52,17 @@ def extract_social_media_ids(column):
             url_parts = url.split('/')
 
             domain = url_parts[2] if len(url_parts) >= 3 else None
-            social_media_id = extract_user_alias(url, domain)
 
-            if domain in social_media_dict.values():
-                social_media_ids.append(social_media_id)
+            if domain in social_media_dict:
+                social_media_id = social_media_dict[domain] + url.split('/')[-2]
+
+                if domain in social_media_dict.values():
+                    social_media_ids.append(social_media_id)
+                else:
+                    social_media_ids.append('')
+
             else:
                 social_media_ids.append('')
-
-        else:
-            social_media_ids.append('')
 
     return social_media_ids
 
@@ -78,7 +80,7 @@ def main(csv_file):
         domain = social_media_id[:-1] if social_media_id else None
 
         if domain in social_media_dict.values():
-            df.at[idx, domain] = social_media_id.split('.com/')[-1]
+            df.at[idx, domain] = social_media_id[:-1]
 
     # Populate the IDs to the corresponding columns
     for domain, key in social_media_dict.items():
@@ -98,3 +100,5 @@ if __name__ == '__main__':
 
     csv_file = sys.argv[1]
     main(csv_file)
+
+
