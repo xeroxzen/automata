@@ -44,18 +44,25 @@ def extract_user_alias(url, domain):
     return ''
 
 
-def extract_social_media_ids(row):
-    url = row['personal_www']
+def extract_social_media_ids(column):
+    social_media_ids = []
 
-    if pd.notna(url) and url.strip():
-        url_parts = url.split('/')
+    for url in column:
+        if pd.notna(url) and isinstance(url, str) and url.strip():
+            url_parts = url.split('/')
 
-        domain = url_parts[2] if len(url_parts) >= 3 else None
-        social_media_id = extract_user_alias(url, domain)
+            domain = url_parts[2] if len(url_parts) >= 3 else None
+            social_media_id = extract_user_alias(url, domain)
 
-        return social_media_id if domain in social_media_dict else ''
+            if domain in social_media_dict:
+                social_media_ids.append(social_media_id)
+            else:
+                social_media_ids.append('')
 
-    return ''
+        else:
+            social_media_ids.append('')
+
+    return social_media_ids
 
 
 def main(csv_file):
