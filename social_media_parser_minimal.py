@@ -2,36 +2,37 @@ import pandas as pd
 import sys
 
 social_media_dict = {
-        'apple': 'apple',
-        'facebook': 'facebook',
-        'battlenet': 'battlenet',
-        'aim': 'aim',
-        'mailru': 'mailru',
-        'ok': 'ok',
-        'twitter': 'twitter',
-        'roblox': 'roblox',
-        'google': 'google',
-        'vk': 'vk',
-        'steam': 'steam',
-        'leagueoflegends': 'leagueoflegends',
-        'discord': 'discord',
-        'icq': 'icq',
-        'snapchat': 'snapchat',
-        'instagram': 'instagram',
-        'youtube': 'youtube',
-        'telegram': 'telegram',
-        'linkedin': 'linkedin',
-        'yim': 'yim',
-        'skype': 'skype',
-        'github': 'github',
-        'twitch': 'twitch',
-        'spotify': 'spotify',
-        'xbox': 'xbox',
-        'reddit': 'reddit',
-        'tiktok': 'tiktok',
-        'flattr': 'flattr',
-        'qq': 'qq',
-    }
+    'apple': 'apple',
+    'facebook': 'facebook',
+    'battlenet': 'battlenet',
+    'aim': 'aim',
+    'mailru': 'mailru',
+    'ok': 'ok',
+    'twitter': 'twitter',
+    'roblox': 'roblox',
+    'google': 'google',
+    'vk': 'vk',
+    'steam': 'steam',
+    'leagueoflegends': 'leagueoflegends',
+    'discord': 'discord',
+    'icq': 'icq',
+    'snapchat': 'snapchat',
+    'instagram': 'instagram',
+    'youtube': 'youtube',
+    'telegram': 'telegram',
+    'linkedin': 'linkedin',
+    'yim': 'yim',
+    'skype': 'skype',
+    'github': 'github',
+    'twitch': 'twitch',
+    'spotify': 'spotify',
+    'xbox': 'xbox',
+    'reddit': 'reddit',
+    'tiktok': 'tiktok',
+    'flattr': 'flattr',
+    'qq': 'qq',
+    'openid.mail': 'mailru'
+}
 
 
 def extract_social_media_ids(df):
@@ -47,7 +48,8 @@ if __name__ == '__main__':
 
     df = extract_social_media_ids(df)
 
-    new_csv_file = csv_file.replace('.csv', '_with_social_media_ids_minimal_approach.csv')
+    new_csv_file = csv_file.replace(
+        '.csv', '_with_social_media_ids_minimal_approach.csv')
     df.to_csv(new_csv_file, index=False)
 
     print(
