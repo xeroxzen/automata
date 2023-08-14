@@ -43,6 +43,6 @@ def deduplicate_csv_files(directory_path):
       # Write the deduplicated DataFrame to a new CSV file.
       df.to_csv(deduplicated_file_path, index=False)
 
-if name == "__main__":
+if __name__ == "__main__":
   directory_path = os.getcwd()
   deduplicate_csv_files(directory_path)
