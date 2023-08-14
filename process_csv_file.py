@@ -57,6 +57,13 @@ def deduplicate_csv_files(directory_path):
             print(
                 f"Column '{err.args[0]}' does not exist in CSV file '{csv_file_path}'.")
 
+        # Delete rows with duplicate emails
+        try:
+            df.drop_duplicates(subset="email", keep="first", inplace=True)
+        except KeyError as err:
+            print(
+                f"Column '{err.args[0]}' does not exist in CSV file '{csv_file_path}'.")
+
         # Write the deduplicated DataFrame to a new CSV file.
         df.to_csv(deduplicated_file_path, index=False)
 
