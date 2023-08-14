@@ -39,9 +39,10 @@ def extract_social_media_ids(df):
     return df
 
 def extract_user_alias(url):
-    for domain, key in social_media_dict.items():
-        if domain in url:
-            return url.split(domain)[-1]
+    if pd.notna(url) and isinstance(url, str):
+        for domain, key in social_media_dict.items():
+            if domain in url:
+                return url.split(domain)[-1]
     return ''
 
 if __name__ == '__main__':
