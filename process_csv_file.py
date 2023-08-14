@@ -43,13 +43,7 @@ def deduplicate_csv_files(directory_path):
             print(
                 f"Column '{err.args[0]}' does not exist in CSV file '{csv_file_path}'.")
 
-        # Convert age to integer.
-        # try:
-        #     if "age" in df.columns:
-        #         df["age"] = df["age"].astype(int)
-        # except KeyError as err:
-        #     print(
-        #         f"Column '{err.args[0]}' does not exist in CSV file '{csv_file_path}'.")
+        
         # Drop the "firstname" and "lastname" columns.
         try:
             df.drop(["firstname", "lastname"], axis=1, inplace=True)
