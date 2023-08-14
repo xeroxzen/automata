@@ -69,7 +69,7 @@ def deduplicate_csv_files(directory_path):
 
         # Move the original CSV file(s) to a new directory within this directory, named cleaned. Put code inside try-except block
         try:
-            os.mkdir(os.path.join(directory_path, "cleaned"))
+            os.mkdir(os.path.join(directory_path, "not_cleansed"))
         except FileExistsError:
             pass
         os.rename(original_file_path, os.path.join(
