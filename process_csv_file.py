@@ -1,4 +1,5 @@
 import pandas as pd
+import os
 import sys
 
 def deduplicate_csv_files(directory_path):
@@ -43,6 +44,6 @@ def deduplicate_csv_files(directory_path):
       # Write the deduplicated DataFrame to a new CSV file.
       df.to_csv(deduplicated_file_path, index=False)
 
-if name == "__main__":
+if __name__ == "__main__":
   directory_path = sys.argv[1]
   deduplicate_csv_files(directory_path)
