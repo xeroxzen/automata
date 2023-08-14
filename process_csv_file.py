@@ -36,12 +36,15 @@ def deduplicate_csv_files(directory_path):
                 f"Column '{err.args[0]}' does not exist in CSV file '{csv_file_path}'.")
 
         # Combine the "firstname" and "lastname" columns into a new column called "fullname".
-        df["fullname"] = df["firstname"] + " " + df["lastname"]
-
-        # Drop the "firstname" and "lastname" columns.
         try:
             if "firstname" in df.columns and "lastname" in df.columns:
-                df.drop(["firstname", "lastname"], axis=1, inplace=True)
+                df["fullname"] = df["firstname"] + " " + df["lastname"]
+        except KeyError as err:
+            print(
+                f"Column '{err.args[0]}' does not exist in CSV file '{csv_file_path}'.")
+        # Drop the "firstname" and "lastname" columns.
+        try:
+            df.drop(["firstname", "lastname"], axis=1, inplace=True)
         except KeyError as err:
             print(
                 f"Column '{err.args[0]}' does not exist in CSV file '{csv_file_path}'.")
