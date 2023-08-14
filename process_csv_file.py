@@ -1,37 +1,33 @@
 import pandas as pd
 import os
 
-def process_csv_file(file_path):
-    """Processes a CSV file in the specified directory.
+
+def deduplicate_csv_files(directory_path):
+    """Deduplicates CSV files in the specified directory.
 
     Args:
-        file_path: The path to the CSV file to process.
-
-    Returns:
-        None.
+      directory_path: The path to the directory containing the CSV files to deduplicate.
     """
 
-    df = pd.read_csv(file_path)
+    for file_name in os.listdir(directory_path):
+        if file_name.endswith(".csv"):
+            original_file_path = os.path.join(directory_path, file_name)
+            deduplicated_file_path = os.path.join(
+                directory_path, file_name.replace(".csv", "_deduplicated.csv"))
 
-    # Change the column name "radio11" to "gender".
-    df.rename(columns={"radio11": "gender"}, inplace=True)
+            df = pd.read_csv(original_file_path)
 
-    # Delete the columns "terms", "eett" and "button7".
-    df = df.drop(["terms", "eett", "button7"], axis=1)
+            df.rename(columns={"radio11": "gender"}, inplace=True)
 
-    # Combine the "firstname" and "lastname" columns into a single column named "fullname".
-    df["fullname"] = df["firstname"] + " " + df["lastname"]
+            df.drop(["terms", "eett", "button7"], axis=1, inplace=True)
 
-    # Save the processed CSV file.
-    df.to_csv(file_path, index=False)
+            df["fullname"] = df["firstname"] + " " + df["lastname"]
+
+            df.drop(["firstname", "lastname"], axis=1, inplace=True)
+
+            df.to_csv(deduplicated_file_path, index=False)
+
 
 if __name__ == "__main__":
-    # Get the directory of the CSV files to process.
-    csv_dir_path = os.getcwd()
-
-    # Iterate through all the CSV files in the directory.
-    for file in os.listdir(csv_dir_path):
-        if file.endswith(".csv"):
-            file_path = os.path.join(csv_dir_path, file)
-            process_csv_file(file_path)
-
+    directory_path = os.getcwd()
+    deduplicate_csv_files(directory_path)
