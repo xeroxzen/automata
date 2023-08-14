@@ -67,6 +67,17 @@ def deduplicate_csv_files(directory_path):
         # Write the deduplicated DataFrame to a new CSV file.
         df.to_csv(deduplicated_file_path, index=False)
 
+        # Move the original CSV file(s) to a new directory within this directory, named cleaned. Put code inside try-except block
+        try:
+            os.mkdir(os.path.join(directory_path, "cleaned"))
+        except FileExistsError:
+            pass
+        os.rename(original_file_path, os.path.join(
+            directory_path, "cleaned", os.path.basename(original_file_path)))
+
+        print(
+            f"CSV file '{original_file_path}' has been deduplicated and saved at '{deduplicated_file_path}'.")
+
 
 if __name__ == "__main__":
     directory_path = sys.argv[1]
