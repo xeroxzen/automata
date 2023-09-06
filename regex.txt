@@ -1,0 +1,9 @@
+Sure! Here's a regular expression that you can use to delete `.ru/mail/` from the URL:
+```python
+import re
+url = '.ru/mail/petkevich.nataly'
+result = re.sub(r'\.ru\/mail\/', '', url)
+print(result)
+```
+This regular expression searches for the string `.ru/mail/` in the URL and replaces it with an empty string, effectively deleting it from the URL. The result is stored in the `result` variable and printed to the console. Is there anything else I can help with? 😊
+
