@@ -1,8 +1,9 @@
 import pandas as pd
 import os
+import sys
 
 
-def merge_csv_files(*args, on='userid'):
+def merge_csv_files(input_directory):
     """Merges two or more CSV files based on a common column.
 
     Args:
@@ -13,24 +14,13 @@ def merge_csv_files(*args, on='userid'):
         A merged Pandas DataFrame.
     """
 
-    dataframes = []
-    for file_path in args:
-        df = pd.read_csv(file_path)
-        dataframes.append(df)
+    # Step 1: Identify csv files in the dir
+    csv_files = [file for file in os.listdir(input_directory) if file.endswith('.csv')]
 
-    merged_df = pd.merge(*dataframes, on=on, how="inner")
-
-    return merged_df
-
-
-def main():
-    csv_files = [os.path.join(os.getcwd(), f)
-                 for f in os.listdir() if f.endswith('.csv')]
-
-    merged_df = merge_csv_files(*csv_files)
-
-    merged_df.to_csv('merged.csv', index=False)
-
-
-if __name__ == main():
-    main()
+    # Alert if files less than 2 files in the directory
+    if len(csv_files) < 2:
+        print("Not enough CSV files to merge.")
+        return
+    
+    # Step 2: Read the first csv file to determine columns in there
+    

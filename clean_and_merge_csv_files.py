@@ -14,6 +14,7 @@ def find_common_columns(dataframes):
     common_columns = set(dataframes[0].columns)
     for df in dataframes[1:]:
         common_columns &= set(df.columns)
+    print(f"Common columns: {common_columns}")
     return list(common_columns)
 
 def clean_and_merge_csv(directory, common_columns):
