@@ -6,7 +6,7 @@ def count_lines_of_code(directory):
     for dir_path in directory:
         for root, dirs, files in os.walk(dir_path):
             for file in files:
-                if file.endswith('.js'):
+                if file.endswith('.js' or '.css'):
                     file_path = os.path.join(root, file)
                     with open(file_path, 'r') as f:
                         count += sum(1 for line in f if line.strip() and not line.startswith(('/', '/*', '*')))
