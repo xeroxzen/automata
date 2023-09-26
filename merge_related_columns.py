@@ -37,8 +37,9 @@ def merge_csv_files(directory, merge_columns=None):
         merge_columns = set(merge_columns)
 
     for merge_column in merge_columns:
-        if all(merge_column in df.columns for df in csv_files):
-            break
+        if not all(merge_column in df.columns for df in csv_files):
+            continue
+        break
     else:
         print("No common column found to merge on.")
         return
