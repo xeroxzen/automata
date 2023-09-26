@@ -39,20 +39,26 @@ def merge_csv_files(directory, merge_columns=None):
     try:
         data_frames = [pd.read_csv(csv_file) for csv_file in csv_files]
 
+        common_column_found = False
+
         for merge_column in merge_columns:
-            if not all(merge_column in df.columns for df in data_frames):
-                continue
-            break
-        else:
-            print("No common column found to merge on.")
+            common_rows = [df for df in data_frames if merge_column in df.columns]
+
+            if len(common_rows) >= 2 and any(len(df[df[merge_column].notna()]) > 0 for df in common_rows):
+                common_column_found = True
+                break
+
+        if not common_column_found:
+            print("No common column found or no similarity in rows to merge on.")
             return
 
         for csv_file, current_df in zip(csv_files, data_frames):
-            if merged_df is None:
-                merged_df = current_df
-            else:
-                merged_df = merged_df.merge(
-                    current_df, on=merge_column, how='outer')
+            if merge_column in current_df.columns:
+                if merged_df is None:
+                    merged_df = current_df
+                else:
+                    merged_df = merged_df.merge(
+                        current_df, on=merge_column, how='outer')
     except AttributeError as e:
         print(f"Error: {e}")
         return
@@ -75,6 +81,3 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     merge_csv_files(args.directory, args.merge_columns)
-
-
-
