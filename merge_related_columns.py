@@ -14,6 +14,7 @@ def merge_csv_files(directory, merge_columns=None):
 
     Returns:
       A merged Pandas DataFrame.
+      type merge_columns: object
     """
 
     csv_files = glob.glob(os.path.join(directory, '*.csv'))
