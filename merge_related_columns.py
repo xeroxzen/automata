@@ -36,18 +36,18 @@ def merge_csv_files(directory, merge_columns=None):
             merge_columns.extend(current_df.columns)
         merge_columns = set(merge_columns)
 
-    for merge_column in merge_columns:
-        if not all(merge_column in df.columns for df in csv_files):
-            continue
-        break
-    else:
-        print("No common column found to merge on.")
-        return
-
     try:
-        for csv_file in csv_files:
-            current_df = pd.read_csv(csv_file)
+        data_frames = [pd.read_csv(csv_file) for csv_file in csv_files]
 
+        for merge_column in merge_columns:
+            if not all(merge_column in df.columns for df in data_frames):
+                continue
+            break
+        else:
+            print("No common column found to merge on.")
+            return
+
+        for csv_file, current_df in zip(csv_files, data_frames):
             if merged_df is None:
                 merged_df = current_df
             else:
@@ -75,3 +75,6 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     merge_csv_files(args.directory, args.merge_columns)
+
+
+
