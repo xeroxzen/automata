@@ -18,18 +18,18 @@ def merge_csv_files(file1, file2, merge_columns=None):
                 print("No common columns found for merging.")
                 return
 
-            print("Select the columns to merge on (e.g., 'id' 'userid'):")
-            user_input = input("Enter the columns separated by space: ").strip()
-            selected_columns = user_input.split()
+            print("Select the columns to merge:")
+            print("Available columns:", common_columns)
+            merge_column1 = input("Enter the first merge column: ")
+            merge_column2 = input("Enter the second merge column: ")
 
-            # Check if selected columns exist in common columns
-            if not all(col in common_columns for col in selected_columns):
-                print("Invalid column selection. Exiting.")
+            if merge_column1 not in common_columns or merge_column2 not in common_columns:
+                print("Invalid column names. Both columns must be present in the common columns.")
                 return
 
-            merge_columns = selected_columns
+            merge_columns = [merge_column1, merge_column2]
 
-        merged_df = pd.merge(df1, df2, on=merge_columns, how='outer')
+        merged_df = pd.merge(df1, df2, left_on=merge_columns[0], right_on=merge_columns[1], how='outer')
 
         output_filename = "merged_output.csv"
         merged_df.to_csv(output_filename, index=False)
@@ -55,7 +55,4 @@ if __name__ == "__main__":
         if not file2:
             print("No file selected. Exiting.")
         else:
-            print("Enter the columns to merge on (e.g., 'id' 'userid'):")
-            merge_columns_input = input("Enter the columns separated by space (press Enter to use auto-detection): ").strip()
-            merge_columns = merge_columns_input.split() if merge_columns_input else None
-            merge_csv_files(file1, file2, merge_columns)
+            merge_csv_files(file1, file2)
