@@ -18,8 +18,7 @@ def merge_csv_files(file1, file2, merge_columns=None):
                 print("No common columns found for merging.")
                 return
 
-            print("Select the columns to merge:")
-            print("Available columns:", common_columns)
+            print("Available common columns:", common_columns)
             merge_column1 = input("Enter the first merge column: ")
             merge_column2 = input("Enter the second merge column: ")
 
