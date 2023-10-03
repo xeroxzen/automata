@@ -8,26 +8,22 @@ def merge_csv_files(file1, file2, merge_columns=None):
         df1 = pd.read_csv(file1)
         df2 = pd.read_csv(file2)
 
-        if merge_columns is None:
-            root = tk.Tk()
-            root.withdraw()
+        # Assign the common_columns variable inside the merge_csv_files() function.
+        common_columns = set(df1.columns).intersection(df2.columns)
 
-            common_columns = set(df1.columns).intersection(df2.columns)
-            common_columns = list(common_columns)
+        if not common_columns:
+            print("No common columns found for merging.")
+            return
 
-            if not common_columns:
-                print("No common columns found for merging.")
-                return
+        print("Available common columns:", common_columns)
+        merge_column1 = input("Enter the first merge column: ")
+        merge_column2 = input("Enter the second merge column: ")
 
-            print("Available common columns:", common_columns)
-            merge_column1 = input("Enter the first merge column: ")
-            merge_column2 = input("Enter the second merge column: ")
+        if merge_column1 not in common_columns or merge_column2 not in common_columns:
+            print("Invalid column names. Both columns must be present in the common columns.")
+            return
 
-            if merge_column1 not in common_columns or merge_column2 not in common_columns:
-                print("Invalid column names. Both columns must be present in the common columns.")
-                return
-
-            merge_columns = [merge_column1, merge_column2]
+        merge_columns = [merge_column1, merge_column2]
 
         merged_df = pd.merge(df1, df2, left_on=merge_columns[0], right_on=merge_columns[1], how='outer')
 
