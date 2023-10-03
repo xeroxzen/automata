@@ -53,6 +53,8 @@ def select_csv_file():
 
 
 if __name__ == "__main__":
+    common_columns = []
+
     print("Select the first CSV file:")
     file1 = select_csv_file()
 
@@ -71,5 +73,5 @@ if __name__ == "__main__":
 
     # Check if the file1 and file2 variables are not None before calling the merge_csv_files() function.
     if file1 is not None and file2 is not None:
-        merge_csv_files(file1, file2)
+        merge_csv_files(file1, file2, common_columns)
 
