@@ -2,12 +2,34 @@ import pandas as pd
 import tkinter as tk
 from tkinter import filedialog
 
-def merge_csv_files(file1, file2, merge_column1, merge_column2):
+def merge_csv_files(file1, file2, merge_columns=None):
     try:
         df1 = pd.read_csv(file1)
         df2 = pd.read_csv(file2)
 
-        merged_df = pd.merge(df1, df2, left_on=merge_column1, right_on=merge_column2, how='outer')
+        if merge_columns is None:
+            root = tk.Tk()
+            root.withdraw()
+
+            common_columns = set(df1.columns).intersection(df2.columns)
+            common_columns = list(common_columns)
+
+            if not common_columns:
+                print("No common columns found for merging.")
+                return
+
+            print("Select the columns to merge on (e.g., 'id' 'userid'):")
+            user_input = input("Enter the columns separated by space: ").strip()
+            selected_columns = user_input.split()
+
+            # Check if selected columns exist in common columns
+            if not all(col in common_columns for col in selected_columns):
+                print("Invalid column selection. Exiting.")
+                return
+
+            merge_columns = selected_columns
+
+        merged_df = pd.merge(df1, df2, on=merge_columns, how='outer')
 
         output_filename = "merged_output.csv"
         merged_df.to_csv(output_filename, index=False)
@@ -33,6 +55,7 @@ if __name__ == "__main__":
         if not file2:
             print("No file selected. Exiting.")
         else:
-            merge_column1 = input("Enter the first merge column name (e.g., 'id'): ")
-            merge_column2 = input("Enter the second merge column name (e.g., 'userid'): ")
-            merge_csv_files(file1, file2, merge_column1, merge_column2)
+            print("Enter the columns to merge on (e.g., 'id' 'userid'):")
+            merge_columns_input = input("Enter the columns separated by space (press Enter to use auto-detection): ").strip()
+            merge_columns = merge_columns_input.split() if merge_columns_input else None
+            merge_csv_files(file1, file2, merge_columns)
