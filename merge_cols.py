@@ -8,9 +8,6 @@ def merge_csv_files(file1, file2, merge_columns=None):
         df2 = pd.read_csv(file2)
 
         if merge_columns is None:
-            root = tk.Tk()
-            root.withdraw()
-
             common_columns = set(df1.columns).intersection(df2.columns)
             common_columns = list(common_columns)
 
@@ -41,6 +38,7 @@ def select_csv_file():
     root = tk.Tk()
     root.withdraw()  # Hide the main window
     file_path = filedialog.askopenfilename(title="Select a CSV file")
+    root.destroy()  # Close the tkinter window
     return file_path
 
 if __name__ == "__main__":
