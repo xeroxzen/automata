@@ -14,7 +14,7 @@ def analyze_usermeta_files(files):
     column_patterns = {}
 
     for file in files:
-        df = pd.read_csv(file, encoding="utf-8", on_bad_lines=False, warn_bad_lines=False)
+        df = pd.read_csv(file, encoding="utf-8", on_bad_lines=False)
         columns_to_ignore = ['shipping', 'billing', 'first_name', 'last_name', 'email', 'twitter', 'facebook', 'google']
         valid_columns = [column for column in df.columns if all(ignore not in column.lower() for ignore in columns_to_ignore)]
 
