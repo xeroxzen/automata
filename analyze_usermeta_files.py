@@ -15,7 +15,7 @@ def analyze_usermeta_files(files):
     column_patterns = defaultdict(list)
 
     for file in files:
-        with open(file, 'r') as csvfile:
+        with open(file, 'r', encoding="utf-8") as csvfile:
             reader = csv.reader(csvfile)
             header = next(reader, None)  # Assuming the first row is the header
 
