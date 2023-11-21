@@ -15,7 +15,11 @@ def analyze_usermeta_files(files):
 
     for file in files:
         df = pd.read_csv(file, encoding="utf-8", on_bad_lines='warn')
-        columns_to_ignore = ['shipping', 'billing', 'first_name', 'last_name', 'email', 'twitter', 'facebook', 'google']
+        columns_to_ignore = ['shipping', 'billing', 'first_name', 'last_name', 'email', 'twitter', 'facebook',
+                             'google', 'linkedin', 'youtube', 'instagram', 'pinterest', 'vimeo', 'tumblr','name',
+                             'username','password', 'user_login', 'user_pass', 'user_email', 'user_url',
+                             'user_nicename','mobile', 'phone', 'address', 'city', 'state', 'country', 'zip',
+                             'fullname', 'nickname', 'display_name', 'user_registered', 'user_activation_key',]
         valid_columns = [column for column in df.columns if all(ignore not in column.lower() for ignore in columns_to_ignore)]
 
         for column in valid_columns:
