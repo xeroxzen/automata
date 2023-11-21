@@ -1,7 +1,6 @@
 import os
 import sys
-import csv
-from collections import defaultdict
+import pandas as pd
 
 def find_usermeta_files(directory):
     usermeta_files = []
@@ -12,16 +11,18 @@ def find_usermeta_files(directory):
     return usermeta_files
 
 def analyze_usermeta_files(files):
-    column_patterns = defaultdict(list)
+    column_patterns = {}
 
     for file in files:
-        with open(file, 'r', encoding="utf-8") as csvfile:
-            reader = csv.reader(csvfile)
-            header = next(reader, None)  # Assuming the first row is the header
+        df = pd.read_csv(file, encoding="utf-8")
+        columns_to_ignore = ['shipping', 'billing', 'first_name', 'last_name', 'email', 'twitter', 'facebook', 'google']
+        valid_columns = [column for column in df.columns if all(ignore not in column.lower() for ignore in columns_to_ignore)]
 
-            if header:
-                for i, column in enumerate(header):
-                    column_patterns[column].append(i)
+        for column in valid_columns:
+            if column in column_patterns:
+                column_patterns[column].append(file)
+            else:
+                column_patterns[column] = [file]
 
     return column_patterns
 
@@ -30,12 +31,16 @@ def generate_report(column_patterns):
 
     if repeated_columns:
         print("Repeated columns in usermeta files:")
-        for column, indices in repeated_columns.items():
-            print(f"Column '{column}' appears at indices {indices}")
+        for column, files in repeated_columns.items():
+            print(f"Column '{column}' appears in files: {', '.join(files)}")
     else:
         print("No repeating columns found. No pattern identified.")
 
 if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        print("Usage: python script.py <directory_path>")
+        sys.exit(1)
+
     directory_path = sys.argv[1]
 
     usermeta_files = find_usermeta_files(directory_path)
