@@ -1,6 +1,3 @@
-import os
-import glob
-import argparse
 import pandas as pd
 import tkinter as tk
 from tkinter import filedialog
@@ -11,9 +8,8 @@ def merge_csv_files(file1, file2, merge_columns=None):
         df2 = pd.read_csv(file2)
 
         if merge_columns is None:
-            # Let the user select the column(s) to merge on
             root = tk.Tk()
-            root.withdraw()  # Hide the main window
+            root.withdraw()
 
             common_columns = set(df1.columns).intersection(df2.columns)
             common_columns = list(common_columns)
