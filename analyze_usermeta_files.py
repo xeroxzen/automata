@@ -11,7 +11,7 @@ def find_usermeta_files(directory):
     return usermeta_files
 
 def analyze_usermeta_files(files):
-    column_patterns = {}
+    column_counts = {}
 
     for file in files:
         df = pd.read_csv(file, encoding="utf-8", on_bad_lines='warn')
@@ -19,20 +19,20 @@ def analyze_usermeta_files(files):
         valid_columns = [column for column in df.columns if all(ignore not in column.lower() for ignore in columns_to_ignore)]
 
         for column in valid_columns:
-            if column in column_patterns:
-                column_patterns[column].append(file)
+            if column in column_counts:
+                column_counts[column] += 1
             else:
-                column_patterns[column] = [file]
+                column_counts[column] = 1
 
-    return column_patterns
+    return column_counts
 
-def generate_report(column_patterns):
-    repeated_columns = {key: value for key, value in column_patterns.items() if len(value) > 1}
+def generate_report(column_counts):
+    repeated_columns = {key: value for key, value in column_counts.items() if value > 1}
 
     if repeated_columns:
         print("Repeated columns in usermeta files:")
-        for column, files in repeated_columns.items():
-            print(f"Column '{column}' appears in files: {', '.join(files)}")
+        for column, count in repeated_columns.items():
+            print(f"Column '{column}' appears {count} times.")
     else:
         print("No repeating columns found. No pattern identified.")
 
@@ -48,5 +48,5 @@ if __name__ == "__main__":
     if not usermeta_files:
         print("No usermeta files found.")
     else:
-        column_patterns = analyze_usermeta_files(usermeta_files)
-        generate_report(column_patterns)
+        column_counts = analyze_usermeta_files(usermeta_files)
+        generate_report(column_counts)
