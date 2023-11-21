@@ -6,7 +6,7 @@ def find_usermeta_files(directory):
     usermeta_files = []
     for root, dirs, files in os.walk(directory):
         for file in files:
-            if file.endswith(".csv") and "usermeta" in file:
+            if file.endswith(".csv") and "usermeta_cleaned" in file:
                 usermeta_files.append(os.path.join(root, file))
     return usermeta_files
 
