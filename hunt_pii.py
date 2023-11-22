@@ -1,6 +1,7 @@
 import os
 import csv
 import argparse
+import json
 
 def is_output_folder(folder_name):
     ignore_folders = ["originals", "badones", "complete", "sql_statements", "unable_to_parse", "wrong_length"]
@@ -54,9 +55,20 @@ def analyze_directory(directory):
 
     return report
 
+def save_report(reports, output_file):
+    with open(output_file, 'w') as f:
+        for report in reports:
+            f.write(f"\nDirectory: {report['directory']}\n")
+            f.write(f"CSV Files Found: {report['csv_count']}\n")
+            for csv_detail in report['csv_details']:
+                f.write(f"\n  File: {csv_detail['file']}\n")
+                f.write(f"    PII Found: {csv_detail['pii_found']}\n")
+                f.write(f"    Useless Columns: {csv_detail['useless_columns']}\n")
+
 def main():
     parser = argparse.ArgumentParser(description='CSV PII Analyzer')
     parser.add_argument('input_directory', help='Input directory containing nested CSV files')
+    parser.add_argument('--output_file', default='analysis_report.txt', help='Output file for the analysis report')
     args = parser.parse_args()
 
     if not os.path.exists(args.input_directory):
@@ -78,6 +90,9 @@ def main():
             print(f"\n  File: {csv_detail['file']}")
             print(f"    PII Found: {csv_detail['pii_found']}")
             print(f"    Useless Columns: {csv_detail['useless_columns']}")
+
+    save_report(reports, args.output_file)
+    print(f"\nAnalysis report saved to: {args.output_file}")
 
 if __name__ == "__main__":
     main()
