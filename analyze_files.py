@@ -16,7 +16,7 @@ def print_csv_contents(directory):
         dirs[:] = [d for d in dirs if d not in excluded_folders]
 
         for file in files:
-            if file.endswith('.csv'):
+            if "yoast" not in file and "post" not in file and file.endswith('.csv'):
                 file_path = os.path.join(root, file)
                 print(f"Analyzing contents of {file_path}:")
 
