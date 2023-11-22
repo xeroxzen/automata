@@ -1,62 +1,62 @@
-"""
-@author: Andile Jaden Mbele
-"""
-
 import os
-import pandas as pd
-import re
-import sys
+import csv
+import argparse
 
-# Function to check if a column might contain PII
-def is_pii_column(column_name):
-    pii_keywords = ['email', 'firstname', 'lastname', 'password', 'ip_address', 'city', 'address', 'phone', 'hashed_password', 'created_at']
+def is_output_folder(folder_name):
+    ignore_folders = ["originals", "badones", "complete", "sql_statements", "unable_to_parse", "wrong_length"]
+    return folder_name == "output" and folder_name not in ignore_folders
+
+def contains_pii(column_names):
+    pii_keywords = ["email", "firstname", "lastname", "password", "ip_address", "city", "address", "phone", "hashed_password", "created_at"]
     for keyword in pii_keywords:
-        if re.search(keyword, column_name, re.IGNORECASE):
+        if any(keyword in col.lower() for col in column_names):
             return True
     return False
 
-# Function to analyze a CSV file
-def analyze_csv(file_path):
-    try:
-        df = pd.read_csv(file_path)
-        print(f"Analyzing: {file_path}")
+def analyze_csv(csv_file):
+    with open(csv_file, 'r') as file:
+        reader = csv.reader(file)
+        column_names = next(reader)  # Assuming the first row contains column names
+        pii_found = contains_pii(column_names)
+        useless_columns = [col for col in column_names if col.lower() not in ["id", "name", "description"]]  # Customize this list based on your data
 
-        # Extracting column names
-        columns = df.columns.tolist()
-        print(f"Column Names: {columns}")
+    return pii_found, useless_columns
 
-        # Check for PII columns
-        pii_columns = [col for col in columns if is_pii_column(col)]
-        print(f"PII Columns: {pii_columns}")
+def analyze_directory(directory):
+    csv_files = [f for f in os.listdir(directory) if f.endswith('.csv')]
+    report = {'directory': directory, 'csv_count': len(csv_files), 'csv_details': []}
 
-        # Identify useless columns
-        useless_columns = [col for col in columns if not is_pii_column(col)]
-        print(f"Useless Columns: {useless_columns}")
+    for csv_file in csv_files:
+        file_path = os.path.join(directory, csv_file)
+        pii_found, useless_columns = analyze_csv(file_path)
+        report['csv_details'].append({'file': csv_file, 'pii_found': pii_found, 'useless_columns': useless_columns})
 
-    except pd.errors.EmptyDataError:
-        print(f"Empty file: {file_path}")
+    return report
 
-# Function to traverse directories
-def traverse_directories(root_dir):
-    output_dirs = []
-    for root, dirs, files in os.walk(root_dir):
-        if 'output' in dirs and 'originals' not in dirs and 'badones' not in dirs and 'complete' not in dirs and 'sql_statements' not in dirs and 'unable_to_parse' not in dirs and 'wrong_length' not in dirs:
-            output_dirs.append(os.path.join(root, 'output'))
+def main():
+    parser = argparse.ArgumentParser(description='CSV PII Analyzer')
+    parser.add_argument('input_directory', help='Input directory containing nested CSV files')
+    args = parser.parse_args()
 
-    return output_dirs
+    if not os.path.exists(args.input_directory):
+        print(f"Error: The specified directory '{args.input_directory}' does not exist.")
+        return
 
-# Main function
-def main(root_dir):
-    output_dirs = traverse_directories(root_dir)
+    reports = []
+    for root, dirs, files in os.walk(args.input_directory):
+        for dir_name in dirs:
+            if is_output_folder(dir_name):
+                directory_path = os.path.join(root, dir_name)
+                report = analyze_directory(directory_path)
+                reports.append(report)
 
-    for output_dir in output_dirs:
-        csv_files = [f for f in os.listdir(output_dir) if f.endswith('.csv')]
-        print(f"\n{output_dir}: {len(csv_files)} CSV files found.")
-
-        for csv_file in csv_files:
-            file_path = os.path.join(output_dir, csv_file)
-            analyze_csv(file_path)
+    for report in reports:
+        print(f"\nDirectory: {report['directory']}")
+        print(f"CSV Files Found: {report['csv_count']}")
+        for csv_detail in report['csv_details']:
+            print(f"\n  File: {csv_detail['file']}")
+            print(f"    PII Found: {csv_detail['pii_found']}")
+            print(f"    Useless Columns: {csv_detail['useless_columns']}")
 
 if __name__ == "__main__":
-    root_directory = sys.argv[1]
-    main(root_directory)
+    main()
