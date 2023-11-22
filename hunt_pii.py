@@ -26,8 +26,17 @@ def analyze_csv(csv_file):
                                                                               "fullname","linkedin", "youtube",
                                                                               "registered", "instagram", "pinterest",
                                                                               "ip_address", "vimeo", "tumblr",
-                                                                              "ipv4_address", "ipv6_address",
-                                                                              "password", "hashed_password"
+                                                                              "ipv4_addresses", "ipv6_addresses",
+                                                                              "password", "hashed_password", "skype",
+                                                                              "googleplus", "usernicename", "mobile",
+                                                                              "homepage", "comment_author",
+                                                                              "comment_author_email",
+                                                                              "comment_author_url","birthday",
+                                                                              "address", "gender", "phone", "city",
+                                                                              "work_position", "work_phone",
+                                                                              "work_fax","work_www", "work_address",
+                                                                              "work_company", "birthdate",
+                                                                              "full_name", "activation_key",
                                                                               ]]  # Customize this list based on your data
 
     return pii_found, useless_columns
