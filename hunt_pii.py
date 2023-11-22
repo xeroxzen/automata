@@ -37,6 +37,7 @@ def analyze_csv(csv_file):
                                                                               "work_fax","work_www", "work_address",
                                                                               "work_company", "birthdate",
                                                                               "full_name", "activation_key",
+                                                                              "first_name", "last_name", "user_email",
                                                                               ]]  # Customize this list based on your data
 
     return pii_found, useless_columns
