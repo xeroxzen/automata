@@ -14,7 +14,7 @@ def contains_pii(column_names):
     return False
 
 def analyze_csv(csv_file):
-    with open(csv_file, 'r') as file:
+    with open(csv_file, 'r', encoding="utf-8") as file:
         reader = csv.reader(file)
         column_names = next(reader)  # Assuming the first row contains column names
         pii_found = contains_pii(column_names)
