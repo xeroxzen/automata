@@ -1,6 +1,7 @@
 import os
 import csv
 import argparse
+import json
 
 def is_output_folder(folder_name):
     ignore_folders = ["originals", "badones", "complete", "sql_statements", "unable_to_parse", "wrong_length"]
@@ -54,22 +55,20 @@ def analyze_directory(directory):
 
     return report
 
-def write_report(report, output_directory):
-    report_text = f"Directory: {report['directory']}\n"
-    report_text += f"CSV Files Found: {report['csv_count']}\n"
-
-    for csv_detail in report['csv_details']:
-        report_text += f"\n  File: {csv_detail['file']}\n"
-        report_text += f"    PII Found: {csv_detail['pii_found']}\n"
-        report_text += f"    Useless Columns: {csv_detail['useless_columns']}\n"
-
-    output_file = os.path.join(output_directory, 'report.txt')
-    with open(output_file, 'w') as file:
-        file.write(report_text)
+def save_report(reports, output_file):
+    with open(output_file, 'w') as f:
+        for report in reports:
+            f.write(f"\nDirectory: {report['directory']}\n")
+            f.write(f"CSV Files Found: {report['csv_count']}\n")
+            for csv_detail in report['csv_details']:
+                f.write(f"\n  File: {csv_detail['file']}\n")
+                f.write(f"    PII Found: {csv_detail['pii_found']}\n")
+                f.write(f"    Useless Columns: {csv_detail['useless_columns']}\n")
 
 def main():
     parser = argparse.ArgumentParser(description='CSV PII Analyzer')
     parser.add_argument('input_directory', help='Input directory containing nested CSV files')
+    parser.add_argument('--output_file', default='analysis_report.txt', help='Output file for the analysis report')
     args = parser.parse_args()
 
     if not os.path.exists(args.input_directory):
@@ -92,7 +91,8 @@ def main():
             print(f"    PII Found: {csv_detail['pii_found']}")
             print(f"    Useless Columns: {csv_detail['useless_columns']}")
 
-        write_report(report, args.input_directory)
+    save_report(reports, args.output_file)
+    print(f"\nAnalysis report saved to: {args.output_file}")
 
 if __name__ == "__main__":
     main()
