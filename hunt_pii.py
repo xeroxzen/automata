@@ -18,7 +18,17 @@ def analyze_csv(csv_file):
         reader = csv.reader(file)
         column_names = next(reader)  # Assuming the first row contains column names
         pii_found = contains_pii(column_names)
-        useless_columns = [col for col in column_names if col.lower() not in ["id", "name", "description"]]  # Customize this list based on your data
+        useless_columns = [col for col in column_names if col.lower() not in ["id", "name", "description", "userid",
+                                                                              "username", "user_login", "user_pass",
+                                                                              "firstname", "lastname", "email",
+                                                                              "password","nickname", "display_name",
+                                                                              "twitter", "facebook", "google",
+                                                                              "fullname","linkedin", "youtube",
+                                                                              "registered", "instagram", "pinterest",
+                                                                              "ip_address", "vimeo", "tumblr",
+                                                                              "ipv4_address", "ipv6_address",
+                                                                              "password", "hashed_password"
+                                                                              ]]  # Customize this list based on your data
 
     return pii_found, useless_columns
 
