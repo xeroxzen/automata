@@ -55,15 +55,21 @@ def analyze_directory(directory):
 
     return report
 
+# Save reports to a text and json file. Save these files in the root directory of the CSV files, which is passed in as the input_directory argument.
 def save_report(reports, output_file):
-    with open(output_file, 'w') as f:
+    with open(output_file, 'w') as file:
         for report in reports:
-            f.write(f"\nDirectory: {report['directory']}\n")
-            f.write(f"CSV Files Found: {report['csv_count']}\n")
+            file.write(f"Directory: {report['directory']}\n")
+            file.write(f"CSV Files Found: {report['csv_count']}\n")
             for csv_detail in report['csv_details']:
-                f.write(f"\n  File: {csv_detail['file']}\n")
-                f.write(f"    PII Found: {csv_detail['pii_found']}\n")
-                f.write(f"    Useless Columns: {csv_detail['useless_columns']}\n")
+                file.write(f"  File: {csv_detail['file']}\n")
+                file.write(f"    PII Found: {csv_detail['pii_found']}\n")
+                file.write(f"    Useless Columns: {csv_detail['useless_columns']}\n")
+
+    json_file = output_file.replace('.txt', '.json')
+    with open(json_file, 'w') as file:
+        json.dump(reports, file)
+    
 
 def main():
     parser = argparse.ArgumentParser(description='CSV PII Analyzer')
