@@ -8,7 +8,8 @@ def is_output_folder(folder_name):
     return folder_name == "output" and folder_name not in ignore_folders
 
 def contains_pii(column_names):
-    pii_keywords = ["email", "firstname", "lastname", "password", "ip_address", "city", "address", "phone", "hashed_password", "created_at"]
+    pii_keywords = ["userid","email", "firstname", "lastname", "password", "ip_address", "city", "address", "phone",
+                    "hashed_password", "created_at"]
     for keyword in pii_keywords:
         if any(keyword in col.lower() for col in column_names):
             return True
@@ -17,7 +18,7 @@ def contains_pii(column_names):
 def analyze_csv(csv_file):
     with open(csv_file, 'r', encoding="utf-8") as file:
         reader = csv.reader(file)
-        column_names = next(reader)  # Assuming the first row contains column names
+        column_names = next(reader)
         pii_found = contains_pii(column_names)
         useless_columns = [col for col in column_names if col.lower() not in ["id", "name", "description", "userid",
                                                                               "username", "user_login", "user_pass",
