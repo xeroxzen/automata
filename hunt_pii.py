@@ -8,7 +8,7 @@ def is_output_folder(folder_name):
     return folder_name == "output" and folder_name not in ignore_folders
 
 def contains_pii(column_names):
-    pii_keywords = ["userid","email", "firstname", "lastname", "password", "ip_address", "city", "address", "phone",
+    pii_keywords = ["userid","email", "firstname", "lastname", "first_name","last_name", "password", "ip_address", "city", "address", "phone",
                     "hashed_password", "created_at"]
     for keyword in pii_keywords:
         if any(keyword in col.lower() for col in column_names):
