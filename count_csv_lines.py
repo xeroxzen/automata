@@ -2,10 +2,13 @@ import os
 import sys
 import csv
 
-IGNORE_FOLDERS = ['originals', 'Bad Ones', 'Wrong Length']
+IGNORE_FOLDERS = ['originals', 'Bad Ones', 'Wrong Length', 'complete', 'sql_statements', 'unable_to_parse', 'badones']
 LINE_THRESHOLD = 10000
 
 def count_lines_in_csv_files(directory):
+    # Set the maximum field size limit to  a larger value
+    csv.field_size_limit(2**31-1)
+    
     for root, dirs, files in os.walk(directory):
         # Exclude ignored folders
         dirs[:] = [d for d in dirs if d not in IGNORE_FOLDERS]
