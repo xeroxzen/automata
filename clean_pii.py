@@ -37,7 +37,7 @@ def main():
     sys.exit(1)
 
   csv_file = sys.argv[1]
-  with open(csv_file, "r") as f:
+  with open(csv_file, "r", encoding="utf-8") as f:
     lines = f.readlines()
     for line in lines:
       value_id, data = line.strip().split(",", 1)
