@@ -2,15 +2,20 @@ import os
 import csv
 import sys
 
+EXCLUDED_DIRECTORIES = ["complete", "sql_statements", "unable_to_parse", "originals", "wrong_length"]
+
 def find_phone_column(directory):
     matching_files = []
 
     for root, dirs, files in os.walk(directory):
+        # Exclude specified directories
+        dirs[:] = [d for d in dirs if d not in EXCLUDED_DIRECTORIES]
+
         for file in files:
             if file.endswith(".csv"):
                 file_path = os.path.join(root, file)
 
-                with open(file_path, 'r', encoding="utf-8") as csv_file:
+                with open(file_path, 'r') as csv_file:
                     csv_reader = csv.reader(csv_file)
                     header = next(csv_reader, None)
 
