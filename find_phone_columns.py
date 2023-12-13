@@ -15,7 +15,14 @@ def find_phone_column(directory):
                     header = next(csv_reader, None)
 
                     if header and any(col.lower() in map(str.lower, ["phone", "phonenumber", "phone_number", "tel", "telephone"]) for col in header):
-                        matching_files.append(file_path)
+                        for row in csv_reader:
+                            phone_column_indices = [i for i, col in enumerate(header) if col.lower() in map(str.lower, ["phone", "phonenumber", "phone_number", "tel", "telephone"])]
+                            for index in phone_column_indices:
+                                if index < len(row):
+                                    phone_entry = row[index]
+                                    if ',' in phone_entry or ';' in phone_entry:
+                                        matching_files.append(file_path)
+                                        break
 
     return matching_files
 
@@ -33,8 +40,8 @@ if __name__ == "__main__":
     matching_files = find_phone_column(target_directory)
 
     if matching_files:
-        print("Files with phone-related columns found:")
+        print("Files with phone-related columns and entries with commas or semicolons found:")
         for file in matching_files:
             print(file)
     else:
-        print("No files with phone-related columns found.")
+        print("No files with phone-related columns or entries with commas or semicolons found.")
