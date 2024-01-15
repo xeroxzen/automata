@@ -7,10 +7,10 @@ def intoTOIPaddress(IPint):
         IPint = str(IPint).replace(".0", "")
     if isinstance(IPint, str) and "x" in IPint:
         IPint = int(IPint, 16)
-    elif IPint.isdigit():
+    elif isinstance(IPint, str) and IPint.isdigit():
         IPint = int(IPint)
     
-    if IPint < 0:
+    if isinstance(IPint, int) and IPint < 0:
         IPint = IPint & 0xFFFFFFFF  # Convert negative to equivalent positive 32-bit integer
     
     try:
