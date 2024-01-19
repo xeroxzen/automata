@@ -1,0 +1,32 @@
+Directory: C:\Users\andile.mbele\Desktop\prescient\Databases\9th Batch\The Rest\T\totallynoob.com\totallynoob.com_backup\splitup\output
+CSV Files Found: 10
+  File: tn_comments_8_from_sql.csv
+    PII Found: True
+    Useless Columns: ['comment_ID', 'comment_post_ID', 'comment_date', 'comment_date_gmt', 'comment_content', 'comment_karma', 'comment_approved', 'comment_agent', 'comment_type', 'comment_parent', 'user_id']
+  File: tn_email_log_13_from_sql.csv
+    PII Found: True
+    Useless Columns: ['to_email', 'attachments', 'sent_date']
+  File: tn_pd_transactions_21_from_sql.csv
+    PII Found: True
+    Useless Columns: ['file_id', 'payer_name', 'payer_email', 'gross', 'currency', 'payment_status', 'transaction_type', 'details', 'created', 'deleted']
+  File: tn_usermeta_42_from_sql.csv
+    PII Found: False
+    Useless Columns: ['umeta_id', 'user_id', 'meta_key', 'meta_value']
+  File: tn_users_43_from_sql.csv
+    PII Found: True
+    Useless Columns: ['user_nicename', 'user_url', 'user_registered', 'user_activation_key', 'user_status']
+  File: tn_wassup_tmp_46_from_sql.csv
+    PII Found: False
+    Useless Columns: ['wassup_id', 'timestamp', 'ip', 'hostname', 'urlrequested', 'agent', 'referrer', 'search', 'searchpage', 'os', 'browser', 'language', 'screen_res', 'searchengine', 'spider', 'feed', 'spam', 'url_wpid']
+  File: tn_wc_customer_lookup_49_from_sql.csv
+    PII Found: True
+    Useless Columns: ['customer_id', 'user_id', 'date_last_active', 'date_registered', 'country', 'postcode']
+  File: tn_wfLogins_69_from_sql.csv
+    PII Found: True
+    Useless Columns: ['hitID', 'ctime', 'fail', 'action', 'IP', 'UA']
+  File: tn_woocommerce_sessions_86_from_sql.csv
+    PII Found: False
+    Useless Columns: ['session_id', 'session_key', 'session_value', 'session_expiry']
+  File: tn_wpscst_tickets_93_from_sql.csv
+    PII Found: True
+    Useless Columns: ['primkey', 'title', 'initial_message', 'user_id', 'assigned_to', 'severity', 'resolution', 'time_posted', 'last_updated', 'last_staff_reply', 'target_response_time', 'type']

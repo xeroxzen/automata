@@ -5,9 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7bdf216a-b3a1-4629-a1c8-62f43bd6754c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/data_with_social_media_ids_minimal_approach.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_with_social_media_ids_minimal_approach_deduplicated.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/regex.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/automata.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/automata.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vscode/settings.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/print_csv_file.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,11 +67,26 @@
       <workItem from="1700674725793" duration="10213000" />
       <workItem from="1701704400030" duration="16000" />
       <workItem from="1701797569818" duration="6670000" />
+      <workItem from="1702568810445" duration="5047000" />
+      <workItem from="1702657489962" duration="592000" />
+      <workItem from="1703103505048" duration="33000" />
+      <workItem from="1703188455443" duration="36000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
