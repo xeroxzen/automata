@@ -7,7 +7,7 @@ def merge_csv_files(directory):
     files = os.listdir(directory)
     
     # Filter files that match the pattern
-    csv_files = [file for file in files if 'db_limeNEW_old_tokens' in file and file.endswith('.csv')]
+    csv_files = [file for file in files if 'db_lime_old_tokens' in file and file.endswith('.csv')]
     
     if not csv_files:
         print("No matching CSV files found.")
@@ -23,7 +23,7 @@ def merge_csv_files(directory):
     merged_df = pd.concat(dfs, ignore_index=True)
     
     # Write merged DataFrame to a new CSV file
-    output_file = os.path.join(directory, 'merged_db_limeNEW_old_tokens.csv')
+    output_file = os.path.join(directory, 'merged_db_lime_old_tokens.csv')
     merged_df.to_csv(output_file, index=False)
     
     print("Merged CSV file saved to:", output_file)
