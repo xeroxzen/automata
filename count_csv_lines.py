@@ -3,7 +3,7 @@ import sys
 import csv
 
 IGNORE_FOLDERS = ['originals', 'Bad Ones', 'Wrong Length', 'complete', 'sql_statements', 'unable_to_parse', 'badones']
-LINE_THRESHOLD = 10000
+LINE_THRESHOLD = 100000
 IGNORED_FILENAMES = ['product', 'posts', 'cart']
 
 def count_lines_in_csv_files(directory):
