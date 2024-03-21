@@ -23,6 +23,11 @@ def merge_names(input_file):
     shipping_firstname_cols = [col for col in df.columns if col.lower() in ["shipping_first_name", "shipping_firstname"]]
     shipping_lastname_cols = [col for col in df.columns if col.lower() in ["shipping_last_name", "shipping_lastname"]]
     
+    
+    # For payment
+    payment_firstname_cols = [col for col in df.columns if col.lower() in ["payment_first_name", "payment_firstname"]]
+    payment_lastname_cols = [col for col in df.columns if col.lower() in ["payment_last_name", "payment_lastname"]]
+    
     if first_name_cols and last_name_cols:
         df.insert(2, "fullname", df[first_name_cols[0]].str.cat(df[last_name_cols[0]], sep=" "))
         df.drop(first_name_cols + last_name_cols, axis=1, inplace=True)
@@ -34,6 +39,10 @@ def merge_names(input_file):
     elif shipping_firstname_cols and shipping_lastname_cols:
         df["shipping_fullname"]=df[shipping_firstname_cols[0]].str.cat(df[shipping_lastname_cols[0]], sep=" ")
         df.drop(shipping_firstname_cols + shipping_lastname_cols, axis=1,inplace=True)
+        
+    elif payment_firstname_cols and payment_lastname_cols:
+        df["payment_fullname"]=df[payment_firstname_cols[0]].str.cat(df[payment_lastname_cols[0]], sep=" ")
+        df.drop(payment_firstname_cols + payment_lastname_cols, axis=1, inplace=True)
         
     else:
         print("No columns matching your criteria found")
