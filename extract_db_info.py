@@ -106,74 +106,64 @@ def show_progress_bar(iterable, desc="", **kwargs):
 
     return tqdm(iterable, desc=desc, **kwargs)
 
-def main(root_directory):
+def process_directory(directory_path):
     """
-    Main function to coordinate analysis.
+    Processes CSV files within a directory with an 'output' subdirectory.
 
     Args:
-        root_directory (str): The root directory to start searching for CSV files.
+        directory_path (_type_): _description_
+    """
+    
+
+def calculate_and_print_results(csv_data):
+    """
+    Calculates the similarity between CSV files and prints the results.
+
+    Args:
+        csv_data (list): A list of dictionaries containing CSV data.
     """
 
+    # Count the number of unique databases
+    unique_databases = Counter(csv['database'] for csv in csv_data)
+    num_unique_databases = len(unique_databases)
+
+    # Print the number of unique databases
+    print(f"\nNumber of unique databases: {num_unique_databases}\n")
+
+    # Iterate over all pairs of CSV files
+    for i, csv1 in show_progress_bar(enumerate(csv_data), desc="Comparing CSV files", total=len(csv_data)):
+        for j, csv2 in enumerate(csv_data[i + 1:], i + 1):
+            # Calculate similarity between the two CSV files
+            similarity = calculate_similarity(csv1['df'], csv2['df'])
+            csv1['similarity'][csv2['database']] = similarity
+            csv2['similarity'][csv1['database']] = similarity
+
+    # Print the results
+    for csv in csv_data:
+        print(f"Database: {csv['database']}")
+        print(f"Total columns: {csv['column_count']}")
+        print(f"Column names: {csv['column_names']}")
+        print("Similarity:")
+        for database, similarity in csv['similarity'].items():
+            print(f"  {database}: {similarity:.2f}%")
+        print()
+        
+if __name__ == "__main__":
+    # Get the path to the directory containing CSV files
+    directory = sys.argv[1]
+
+    # Get all CSV files in the directory
+    csv_files = [file for file in os.listdir(directory) if file.endswith('.csv')]
+
+    # Analyze each CSV file
     csv_data = []
+    for csv_file in show_progress_bar(csv_files, desc="Analyzing CSV files"):
+        file_path = os.path.join(directory, csv_file)
+        csv_data.append({
+            'file': csv_file,
+            'df': pd.read_csv(file_path, low_memory=low_memory),
+            **analyze_csv(file_path)
+        })
 
-    # Traverse directories and analyze CSV files
-    for root, dirs, files in os.walk(root_directory):
-        print(f"Analyzing directory: {root}")
-        if 'output' in dirs: # Checking if output is among the subdirectories
-            output_dir = os.path.join(root, 'output')
-            for file in show_progress_bar(files, desc=f"Analyzing directory: {root}"):
-                if file.endswith('.csv'):
-                    file_path = os.path.join(output_dir, file)
-                    csv_data.append(analyze_csv(file_path))
-            
-
-    # Calculate similarities
-    database_groups = {}
-    for item in csv_data:
-        database_name = item['database']
-        if database_name not in database_groups:
-            database_groups[database_name] = []
-        database_groups[database_name].append(item)
-
-    for database, items in show_progress_bar(database_groups.items(), desc="Calculating similarities"):
-        for i in range(len(items)):
-            for j in range(i + 1, len(items)):
-                df1 = pd.read_csv(os.path.join(root_directory, items[i]['database'], 'output', items[i]['filepath']))
-                df2 = pd.read_csv(os.path.join(root_directory, items[j]['database'], 'output', items[j]['filepath']))
-                similarity = calculate_similarity(df1, df2)
-                items[i]['similarity'] = similarity
-                items[j]['similarity'] = similarity
-
-    # Print or store the results (modify this as needed)
-    print(csv_data)
-    
-    # Print Results
-    print("*** Analysis Results ***")  
-
-    # Total Column Counts per 'output' Directory
-    for root, dirs, files in os.walk(root_directory):
-        if 'output' in dirs:
-            output_dir = os.path.join(root, 'output')
-            total_columns = sum(item['column_count'] for item in csv_data if item['database'] == os.path.basename(root))
-            print(f"Directory '{output_dir}': Total Columns = {total_columns}")
-
-    # Most Common Columns 
-    all_columns = [col for item in csv_data for col in item['column_names']]
-    most_common = Counter(all_columns).most_common()
-    print("\nMost Common Columns:")
-    for col, count in most_common:  
-        print(f"- {col} ({count} occurrences)")
-
-    # Percentage Matches (assuming within the same database)
-    print("\nSimilarity Matches (within Databases):")
-    for item in csv_data:
-        if item['similarity'] is not None:
-            print(f"{item['filepath']}: {item['similarity']}%")
-
-# ----------------------------------------------- 
-# How to use:
-
-root_directory = sys.argv[1]
-
-# 2. Run the script
-main(root_directory)
+    # Calculate and print the results
+    calculate_and_print_results(csv_data)
