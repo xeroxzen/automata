@@ -35,10 +35,12 @@ def merge_csv_files(input_directory):
     merged_data = {}
 
     # Step 4: Iterate through CSV files and merge data into the dictionary
+    all_columns_names = set(first_reader.fieldnames)
     for file_name in csv_files:
         file_path = os.path.join(input_directory, file_name)
-        with open(file_path, 'r', newline='') as csv_file:
+        with open(file_path, 'r', newline='', encoding="utf-8") as csv_file:
             reader = csv.DictReader(csv_file)
+            all_columns_names.update(reader.fieldnames)
             for row in reader:
                 common_value = row[common_column]
                 if common_value not in merged_data:
@@ -51,7 +53,7 @@ def merge_csv_files(input_directory):
     output_file_name = os.path.basename(input_directory) + "_merged.csv"
     output_file_path = os.path.join(input_directory, output_file_name)
     with open(output_file_path, 'w', newline='') as output_file:
-        writer = csv.DictWriter(output_file, fieldnames=first_reader.fieldnames)
+        writer = csv.DictWriter(output_file, fieldnames=list(all_columns_names))
         writer.writeheader()
         for common_value, merged_row in merged_data.items():
             writer.writerow(merged_row)
