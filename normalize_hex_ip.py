@@ -2,9 +2,21 @@ import pandas as pd
 import os
 import sys
 
-def normalize_ip(hex_ip):
-    # Convert the hex IP to an integer, then to a proper IPv4 address
-    ip_int = int(hex_ip, 16)
+def normalize_ip(ip):
+    # Check if ip in Nan
+    if pd.isna(ip):
+        return ip
+    
+    # Check if the ip is a string
+    if isinstance(ip, str):
+        if ip.startswith('0x') or ip.startswith('0X'):
+            ip_int = int(ip, 16)
+        else:
+            ip_int = int(ip)
+    else:
+        ip_int = int(ip)
+    
+    # Convert the integer to a proper IPv4 address
     return f"{(ip_int >> 24) & 0xFF}.{(ip_int >> 16) & 0xFF}.{(ip_int >> 8) & 0xFF}.{ip_int & 0xFF}"
 
 def normalize_ip_column(input_csv, ip_column):
