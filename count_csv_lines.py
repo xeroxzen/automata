@@ -9,6 +9,9 @@ IGNORED_FILENAMES = ['product', 'posts', 'cart']
 def count_lines_in_csv_files(directory):
     # Set the maximum field size limit to a large value
     csv.field_size_limit(2**31-1)
+    
+    # Set a counter for indexing the files
+    file_index = 0
 
     for root, dirs, files in os.walk(directory):
         # Exclude ignored folders
@@ -24,7 +27,8 @@ def count_lines_in_csv_files(directory):
                     line_count = sum(1 for _ in reader)
 
                 if line_count > LINE_THRESHOLD:
-                    print(f"File '{file_path}' has {line_count} lines (above {LINE_THRESHOLD})")
+                    file_index += 1
+                    print(f"{file_index}. File '{file_path}' has {line_count} lines (above {LINE_THRESHOLD})")
 
 if __name__ == '__main__':
     if len(sys.argv) < 2:
