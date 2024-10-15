@@ -1,11 +1,19 @@
 import pandas as pd
 import os
 import sys
+import ipaddress
 
 def normalize_ip(ip):
     # Check if ip in Nan
     if pd.isna(ip):
         return ip
+    
+     # Check if the ip is a valid IPv4 address
+    try:
+        ip_obj = ipaddress.ip_address(ip)
+        return str(ip_obj)
+    except ValueError:
+        pass
     
     # Check if the ip is a string
     if isinstance(ip, str):
