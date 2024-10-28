@@ -4,8 +4,8 @@ import sys
 
 # Function to convert Unix timestamp to human-readable date
 def normalize_timestamp(unix_timestamp):
-    # Convert the timestamp to an integer
-    unix_timestamp = int(unix_timestamp)
+    # Convert the timestamp to a float to handle microseconds
+    unix_timestamp = float(unix_timestamp)
     # Convert to a readable format
     return datetime.fromtimestamp(unix_timestamp).strftime('%Y-%m-%d %H:%M:%S')
 
