@@ -14,8 +14,8 @@ def normalize_ip_addresses(csv_file_path):
 
     df = pd.read_csv(csv_file_path)
 
-    if "ip" in df.columns or "ip_address" in df.columns:
-        ip_column = df.loc[:, "ip" or "ip_address"]
+    if "ip" in df.columns or "ip_address" or "ipv4_addresses" in df.columns:
+        ip_column = df.loc[:, "ip" or "ip_address" or "ipv4_addresses"]
     else:
         raise ValueError("The CSV file does not contain a column named ip or ip_address.")
 
