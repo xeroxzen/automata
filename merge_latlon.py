@@ -24,7 +24,7 @@ def find_and_merge_coordinates(root_dir):
             
             # Find latitude and longitude columns
             lat_cols = [col for col in df.columns if col.lower() in ["latitude", "lat", "location_latitude", "location_lat", "geocord_lat", "geocordinate_lat"]]
-            lon_cols = [col for col in df.columns if col.lower() in ["longitude", "lan", "location_longitude", "location_lon", "geocord_lon", "geocordinate_lon"]]  
+            lon_cols = [col for col in df.columns if col.lower() in ["longitude", "lon", "location_longitude", "location_lon", "geocord_lon", "geocordinate_lon"]]  
             
             if lat_cols and lon_cols:
                 lat_col = lat_cols[0]
