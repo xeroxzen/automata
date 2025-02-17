@@ -23,6 +23,14 @@ def merge_csv(users_file, usermeta_file):
         # Drop userid column as it's a duplicate of id
         merged_df.drop(columns=['userid'], inplace=True)
 
+        # Check for first_name/firstname and last_name/lastname, merge into fullname
+        first_name_col = next((col for col in merged_df.columns if col in ['first_name', 'firstname']), None)
+        last_name_col = next((col for col in merged_df.columns if col in ['last_name', 'lastname']), None)
+
+        if first_name_col and last_name_col:
+            merged_df['fullname'] = merged_df[first_name_col] + ' ' + merged_df[last_name_col]
+            merged_df.drop(columns=[first_name_col, last_name_col], inplace=True)
+
         # Extract identifiers
         users_id = extract_identifier(users_file)
         usermeta_id = extract_identifier(usermeta_file)
