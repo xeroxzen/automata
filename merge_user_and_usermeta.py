@@ -36,7 +36,7 @@ def merge_csv(users_file, usermeta_file):
         usermeta_id = extract_identifier(usermeta_file)
 
         # Construct output filename
-        output_filename = f"bza2_users_{users_id}_and_usermeta_{usermeta_id}_combined.csv"
+        output_filename = f"users_{users_id}_and_usermeta_{usermeta_id}_combined.csv"
         output_path = os.path.join(os.path.dirname(users_file), output_filename)
 
         # Save merged CSV
